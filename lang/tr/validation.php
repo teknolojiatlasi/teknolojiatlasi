@@ -1,0 +1,45 @@
+<?php
+
+return [
+    'accepted' => ':attribute kabul edilmelidir.',
+    'confirmed' => ':attribute doğrulaması eşleşmiyor.',
+    'email' => ':attribute geçerli bir e-posta adresi olmalıdır.',
+    'image' => ':attribute bir görsel olmalıdır.',
+    'in' => 'Seçilen :attribute geçersiz.',
+    'integer' => ':attribute bir tam sayı olmalıdır.',
+    'max' => [
+        'file' => ':attribute en fazla :max kilobayt olabilir.',
+        'numeric' => ':attribute en fazla :max olabilir.',
+        'string' => ':attribute en fazla :max karakter olabilir.',
+        'array' => ':attribute en fazla :max öğe içerebilir.',
+    ],
+    'mimes' => ':attribute şu türlerden biri olmalıdır: :values.',
+    'min' => [
+        'file' => ':attribute en az :min kilobayt olmalıdır.',
+        'numeric' => ':attribute en az :min olmalıdır.',
+        'string' => ':attribute en az :min karakter olmalıdır.',
+        'array' => ':attribute en az :min öğe içermelidir.',
+    ],
+    'numeric' => ':attribute bir sayı olmalıdır.',
+    'required' => ':attribute alanı zorunludur.',
+    'string' => ':attribute metin olmalıdır.',
+    'unique' => 'Bu :attribute zaten kullanılıyor.',
+    'url' => ':attribute geçerli bir URL olmalıdır.',
+
+    'attributes' => [
+        'name' => 'ad soyad',
+        'email' => 'e-posta',
+        'password' => 'şifre',
+        'current_password' => 'mevcut şifre',
+        'avatar' => 'profil fotoğrafı',
+        'title' => 'başlık',
+        'description' => 'açıklama',
+        'menu_id' => 'menü',
+        'question_text' => 'soru metni',
+        'correct_answer' => 'doğru cevap',
+        'image_path' => 'görsel yolu',
+        'order' => 'sıra',
+        'answer' => 'cevap',
+        'body' => 'mesaj',
+    ],
+];

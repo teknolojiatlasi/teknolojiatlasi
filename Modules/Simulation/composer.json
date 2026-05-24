@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/simulation",
+    "description": "Simulation module",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {}
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Simulation\\": "app/",
+            "Modules\\Simulation\\Database\\Factories\\": "database/factories/",
+            "Modules\\Simulation\\Database\\Seeders\\": "database/seeders/",
+            "Modules\\Simulation\\Repositories\\": "repositories/",
+            "Modules\\Simulation\\Services\\": "services/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Simulation\\Tests\\": "tests/"
+        }
+    }
+}

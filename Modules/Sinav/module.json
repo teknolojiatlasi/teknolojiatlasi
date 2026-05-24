@@ -1,0 +1,11 @@
+{
+    "name": "Sinav",
+    "alias": "sinav",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Sinav\\Providers\\SinavServiceProvider"
+    ],
+    "files": []
+}

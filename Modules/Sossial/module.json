@@ -1,0 +1,11 @@
+{
+    "name": "Sossial",
+    "alias": "sossial",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Sossial\\Providers\\SossialServiceProvider"
+    ],
+    "files": []
+}

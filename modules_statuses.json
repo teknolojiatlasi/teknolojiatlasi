@@ -1,0 +1,14 @@
+{
+    "Dashboard": true,
+    "Page": true,
+    "Blog": true,
+    "Media": true,
+    "Cv": true,
+    "Exam": true,
+    "Survey": true,
+    "Game": true,
+    "Sossial": true,
+    "Contact": true,
+    "Sinav": true,
+    "Simulation": true
+}

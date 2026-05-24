@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/sossial",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Sossial\\": "app/",
+            "Modules\\Sossial\\Database\\Factories\\": "database/factories/",
+            "Modules\\Sossial\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Sossial\\Tests\\": "tests/"
+        }
+    }
+}

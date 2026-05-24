@@ -1,0 +1,75 @@
+﻿===== Cv.php =====
+<?php
+
+namespace Modules\Cv\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Cv extends Model
+{
+    protected $fillable = [
+        'full_name','title','email','phone','address','about','template'
+    ];
+
+    public function experiences()
+    {
+        return $this->hasMany(CvExperience::class);
+    }
+
+    public function educations()
+    {
+        return $this->hasMany(CvEducation::class);
+    }
+
+    public function skills()
+    {
+        return $this->hasMany(CvSkill::class);
+    }
+}
+
+
+===== CvEducation.php =====
+<?php
+
+namespace Modules\Cv\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class CvEducation extends Model
+{
+    protected $fillable = [
+        'cv_id','school','degree','year'
+    ];
+}
+
+
+===== CvExperience.php =====
+<?php
+
+namespace Modules\Cv\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class CvExperience extends Model
+{
+    protected $fillable = [
+        'cv_id','company','position','start_date','end_date','description'
+    ];
+}
+
+
+===== CvSkill.php =====
+<?php
+
+namespace Modules\Cv\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class CvSkill extends Model
+{
+    protected $fillable = [
+        'cv_id','name','level'
+    ];
+}
+
+

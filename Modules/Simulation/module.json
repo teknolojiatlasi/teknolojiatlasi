@@ -1,0 +1,11 @@
+{
+    "name": "Simulation",
+    "alias": "simulation",
+    "description": "Interactive simulation module for science and mathematics content.",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Simulation\\Providers\\SimulationServiceProvider"
+    ],
+    "files": []
+}

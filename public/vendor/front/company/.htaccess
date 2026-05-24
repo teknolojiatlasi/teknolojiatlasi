@@ -1,0 +1,5 @@
+Options -Indexes
+
+<FilesMatch "\.(html?|php|txt|md|zip)$">
+    Require all denied
+</FilesMatch>
