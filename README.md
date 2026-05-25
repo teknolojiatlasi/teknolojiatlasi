@@ -1,3 +1,6 @@
+il olarak yapılacak
+php artisan db:seed
+database\seeders\DatabaseSeeder.php burdak komutlar çalışır
 1. ADIM — LARAVEL 11 PROJEYİ OLUŞTURALIM
 laravel new modular-cms
 cd modular-cms

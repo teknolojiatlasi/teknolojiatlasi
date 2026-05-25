@@ -36,7 +36,7 @@
         padding: 0.42rem 0.8rem;
         border-radius: 999px;
         background: rgba(37, 99, 235, 0.08);
-        color: #1d4ed8;
+        color: #00fdf6;
         font-size: 0.78rem;
         font-weight: 800;
         letter-spacing: 0.08em;

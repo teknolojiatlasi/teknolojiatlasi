@@ -148,7 +148,7 @@
         background:
             radial-gradient(circle at top right, rgba(8, 145, 178, 0.22), transparent 28%),
             radial-gradient(circle at left bottom, rgba(245, 158, 11, 0.18), transparent 30%),
-            linear-gradient(135deg, #0f172a 0%, #1d4ed8 62%, #2563eb 100%);
+            linear-gradient(135deg, #0f172a 0%, #00fdf6 62%, #2563eb 100%);
         color: #fff;
         box-shadow: 0 30px 75px rgba(15, 23, 42, 0.18);
     }

@@ -58,7 +58,7 @@
 
     .attempts-shell .score-pill {
         background: rgba(37, 99, 235, 0.1);
-        color: #1d4ed8;
+        color: #00fdf6;
     }
 
     .attempts-shell .metric-pill.ok { background: rgba(16, 185, 129, 0.12); color: #047857; }

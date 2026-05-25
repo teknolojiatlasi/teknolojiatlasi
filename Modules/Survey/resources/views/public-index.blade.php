@@ -16,7 +16,7 @@
         box-shadow: var(--card-shadow);
     }
     .survey-hub .hero-card {
-        background: linear-gradient(135deg, #0f172a, #1d4ed8 62%, #2563eb);
+        background: linear-gradient(135deg, #0f172a, #00fdf6 62%, #2563eb);
         color: #fff;
         border-radius: 2rem;
         overflow: hidden;
@@ -49,7 +49,7 @@
         background: rgba(255, 255, 255, 0.92);
         border-radius: 1.5rem;
     }
-    .survey-hub .status-pill { background: #eff6ff; color: #1d4ed8; }
+    .survey-hub .status-pill { background: #eff6ff; color: #00fdf6; }
     .survey-hub .status-pill.muted { background: #f1f5f9; color: #475569; }
     .survey-hub .survey-list-card { transition: transform .2s ease, box-shadow .2s ease; }
     .survey-hub .survey-list-card:hover { transform: translateY(-4px); box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12); }

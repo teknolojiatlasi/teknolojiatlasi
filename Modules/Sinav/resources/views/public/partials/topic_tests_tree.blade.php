@@ -66,7 +66,7 @@
         padding: 0.32rem 0.62rem;
         border-radius: 999px;
         background: rgba(37, 99, 235, 0.08);
-        color: #1d4ed8;
+        color: #00fdf6;
         font-size: 0.72rem;
         font-weight: 800;
         text-transform: uppercase;
@@ -96,7 +96,7 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, #1d4ed8, #06b6d4);
+        background: linear-gradient(135deg, #00fdf6, #06b6d4);
         color: #fff;
         font-size: 0.82rem;
         font-weight: 800;
@@ -139,7 +139,7 @@
     }
 
     .exam-test-link.active {
-        background: linear-gradient(135deg, #1d4ed8, #2563eb);
+        background: linear-gradient(135deg, #00fdf6, #2563eb);
         border-color: transparent;
         color: #fff;
         box-shadow: 0 20px 34px rgba(37, 99, 235, 0.2);
@@ -161,7 +161,7 @@
         padding: 0.35rem 0.6rem;
         border-radius: 999px;
         background: rgba(37, 99, 235, 0.1);
-        color: #1d4ed8;
+        color: #00fdf6;
         font-size: 0.78rem;
         font-weight: 700;
     }

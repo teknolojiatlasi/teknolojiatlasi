@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top navbar-blur">
         <div class="container">
             <a class="navbar-brand fw-bold" href="{{ route('anasayfa') }}">
-                <i class="fa fa-star-half-empty" style="font-size:28px;"></i> Teknoloji Atlası
+                <img src="{{ asset('favicon-star.svg') }}" alt="" width="30" height="30" class="me-2"> Teknoloji Atlası
             </a>
             <button class="navbar-toggler" type="button"
                 aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">

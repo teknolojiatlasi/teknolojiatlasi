@@ -9,7 +9,7 @@
             --card: #ffffff;
             --accent: #ff7a00;
             --accent-2: #0f766e;
-            --accent-3: #1d4ed8;
+            --accent-3: #00fdf6;
             --shadow: 0 24px 60px rgba(16, 24, 40, 0.14);
         }
 

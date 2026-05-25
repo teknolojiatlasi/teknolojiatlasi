@@ -110,7 +110,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top navbar-blur shadow-sm">
     <div class="container">
         <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{{ route('anasayfa') }}">
-            <i class="fa fa-star text-warning" style="font-size: 28px;"></i>
+            <img src="{{ asset('favicon-star.svg') }}" alt="" width="30" height="30" class="d-inline-block align-text-top">
             <span>Teknoloji Atlası</span>
         </a>
 

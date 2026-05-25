@@ -121,7 +121,7 @@
             padding: 32px;
             background:
                 radial-gradient(circle at top right, rgba(255, 255, 255, 0.34), transparent 28%),
-                linear-gradient(135deg, #0f172a 0%, #1d4ed8 48%, #0ea5e9 100%);
+                linear-gradient(135deg, #0f172a 0%, #00fdf6 48%, #0ea5e9 100%);
             color: #fff;
             box-shadow: 0 28px 60px rgba(15, 23, 42, 0.24);
         }

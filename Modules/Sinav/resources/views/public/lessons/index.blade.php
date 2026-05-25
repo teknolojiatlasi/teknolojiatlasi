@@ -10,7 +10,7 @@
         background:
             radial-gradient(circle at top right, rgba(34, 211, 238, 0.18), transparent 24%),
             radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.16), transparent 28%),
-            linear-gradient(135deg, #0f172a 0%, #1d4ed8 62%, #2563eb 100%);
+            linear-gradient(135deg, #0f172a 0%, #00fdf6 62%, #2563eb 100%);
         color: #fff;
         box-shadow: 0 30px 80px rgba(15, 23, 42, 0.18);
     }
@@ -54,7 +54,7 @@
         padding: 0.42rem 0.72rem;
         border-radius: 999px;
         background: #eff6ff;
-        color: #1d4ed8;
+        color: #00fdf6;
         font-size: 0.8rem;
         font-weight: 700;
     }

@@ -2,7 +2,7 @@
     <div class="container py-5">
         <div class="row gy-4">
             <div class="col-12 col-md-4">
-                <h5 class="footer-title"><i class="fa fa-star-half-empty"></i> Teknoloji Atlası</h5>
+                <h5 class="footer-title"><img src="{{ asset('favicon-star.svg') }}" alt="" width="24" height="24" class="me-2"> Teknoloji Atlası</h5>
                 <p class="footer-text">
                     Kariyer, teknoloji ve öğrenme odaklı içerikleri tek merkezde buluşturan modern bilgi portalı.
                 </p>

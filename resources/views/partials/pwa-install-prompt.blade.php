@@ -10,7 +10,7 @@
         <button type="button" class="pwa-install-close" data-pwa-close aria-label="Kapat">
             &times;
         </button>
-        <div class="pwa-install-badge">BY</div>
+        <div class="pwa-install-badge">TA</div>
         <div class="pwa-install-copy">
             <p class="pwa-install-kicker">Teknoloji Atlası uygulamasi</p>
             <h2 class="pwa-install-title" data-pwa-title>Telefonunda daha hizli ac</h2>

@@ -162,7 +162,7 @@
         .btn-outline-primary {
             background: rgba(255,255,255,.9);
             border-color: rgba(37,99,235,.28);
-            color: #1d4ed8;
+            color: #00fdf6;
         }
 
         .btn-outline-dark {
@@ -413,7 +413,7 @@
             border-radius: 999px;
             background: rgba(239, 246, 255, 0.95);
             border: 1px solid rgba(59, 130, 246, 0.16);
-            color: #1d4ed8;
+            color: #00fdf6;
             font-size: 0.88rem;
             font-weight: 700;
             line-height: 1.2;

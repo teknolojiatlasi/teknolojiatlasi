@@ -20,7 +20,7 @@
         background:
             radial-gradient(circle at top right, rgba(34, 211, 238, 0.14), transparent 22%),
             radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.12), transparent 24%),
-            linear-gradient(135deg, #0f172a 0%, #1d4ed8 62%, #2563eb 100%);
+            linear-gradient(135deg, #0f172a 0%, #00fdf6 62%, #2563eb 100%);
         color: #fff;
         box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
     }

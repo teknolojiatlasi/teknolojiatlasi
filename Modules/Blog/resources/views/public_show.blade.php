@@ -175,7 +175,7 @@
                     <span>{{ optional($blog->created_at)->format('d.m.Y') }}</span>
                 </div>
                 <div class="d-flex flex-wrap gap-2">
-                    <a href="#comments" class="btn btn-sm px-3 py-2 text-white border-0 shadow-sm" style="background: linear-gradient(135deg, #2563eb, #1d4ed8); border-radius: 999px; font-size: 1.3rem; line-height: 1.2;">Yorumları gör</a>
+                    <a href="#comments" class="btn btn-sm px-3 py-2 text-white border-0 shadow-sm" style="background: linear-gradient(135deg, #2563eb, #00fdf6); border-radius: 999px; font-size: 1.3rem; line-height: 1.2;">Yorumları gör</a>
                     <a href="{{ route('blog.public.index') }}" class="btn btn-sm px-3 py-2 text-dark shadow-sm" style="background: linear-gradient(135deg, #fef3c7, #fde68a); border: 1px solid #f59e0b; border-radius: 999px; font-size: 1.3rem; line-height: 1.2;">Tüm ilanlar</a>
                 </div>
             </div>

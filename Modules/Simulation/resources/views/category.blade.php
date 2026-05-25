@@ -37,7 +37,7 @@
             padding: 24px;
             background:
                 radial-gradient(circle at top right, rgba(255,255,255,.16), transparent 30%),
-                linear-gradient(135deg, #1d4ed8 0%, #0f172a 100%);
+                linear-gradient(135deg, #00fdf6 0%, #0f172a 100%);
         }
 
         .simulation-category-sidebar__icon {
@@ -194,7 +194,7 @@
             padding: 7px 14px;
             border-radius: 999px;
             background: #dbeafe;
-            color: #1d4ed8;
+            color: #00fdf6;
             font-size: 11px;
             font-weight: 800;
             letter-spacing: .18em;
@@ -265,7 +265,7 @@
             padding: 8px 14px;
             border-radius: 999px;
             background: #eff6ff;
-            color: #1d4ed8;
+            color: #00fdf6;
             font-size: 13px;
             font-weight: 700;
         }

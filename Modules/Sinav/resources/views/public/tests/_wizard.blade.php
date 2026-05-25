@@ -22,7 +22,7 @@
         padding: 0.45rem 0.75rem;
         border-radius: 999px;
         background: rgba(37, 99, 235, 0.1);
-        color: #1d4ed8;
+        color: #00fdf6;
         font-size: 0.82rem;
         font-weight: 700;
     }
@@ -148,7 +148,7 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, #1d4ed8, #06b6d4);
+        background: linear-gradient(135deg, #00fdf6, #06b6d4);
         color: #fff;
         font-weight: 800;
         font-size: 0.98rem;
@@ -234,8 +234,8 @@
     }
 
     .exam-question-chip.is-current {
-        background: #1d4ed8;
-        border-color: #1d4ed8;
+        background: #00fdf6;
+        border-color: #00fdf6;
         color: #fff;
     }
 

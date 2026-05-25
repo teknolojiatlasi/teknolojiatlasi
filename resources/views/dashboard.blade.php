@@ -181,7 +181,7 @@
             padding: 24px;
             background:
                 radial-gradient(circle at top right, rgba(255,255,255,.16), transparent 30%),
-                linear-gradient(135deg, #1d4ed8 0%, #0f172a 100%);
+                linear-gradient(135deg, #00fdf6 0%, #0f172a 100%);
         }
 
         .user-dashboard-sidebar__avatar {
