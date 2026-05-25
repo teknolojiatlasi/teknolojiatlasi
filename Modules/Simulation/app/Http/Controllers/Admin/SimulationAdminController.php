@@ -84,6 +84,27 @@ class SimulationAdminController extends Controller
         ]);
     }
 
+    public function show(Simulation $simulation)
+    {
+        $simulation->load(['category', 'media', 'versions']);
+
+        if ($simulation->content_type === 'html') {
+            return response(
+                $this->editorService->buildPreviewDocument(
+                    (string) ($simulation->html_code ?? ''),
+                    (string) ($simulation->css_code ?? ''),
+                    (string) ($simulation->js_code ?? ''),
+                ),
+                200,
+                ['Content-Type' => 'text/html; charset=UTF-8']
+            );
+        }
+
+        return view('simulation::show', [
+            'simulation' => $simulation,
+        ]);
+    }
+
     public function update(Request $request, Simulation $simulation)
     {
         $data = $request->validate($this->rules($simulation));

@@ -127,12 +127,8 @@ git pull
 composer install --no-dev --optimize-autoloader
 
 php artisan optimize:clear
-
 php artisan migrate --force
-
 php artisan storage:link
-
-
 php artisan optimize:clear
 php artisan cache:clear
 php artisan config:clear

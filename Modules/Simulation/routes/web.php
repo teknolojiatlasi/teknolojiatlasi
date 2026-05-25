@@ -29,6 +29,5 @@ Route::middleware(['auth', 'verified', 'role:admin'])
 
         Route::resource('simulations', SimulationAdminController::class)
             ->names('simulations')
-            ->parameters(['simulations' => 'simulation'])
-            ->except(['show']);
+            ->parameters(['simulations' => 'simulation']);
     });

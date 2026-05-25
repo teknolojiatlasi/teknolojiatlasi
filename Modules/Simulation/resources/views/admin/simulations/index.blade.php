@@ -24,6 +24,7 @@
                 <table class="table table-bordered table-hover align-middle">
                     <thead>
                         <tr>
+                            <th style="width: 96px">Kapak</th>
                             <th>Baslik</th>
                             <th>Kategori</th>
                             <th>Tur</th>
@@ -36,6 +37,18 @@
                         @forelse ($simulations as $simulation)
                             <tr>
                                 <td>
+                                    @if ($simulation->cover_image)
+                                        <img
+                                            src="{{ asset('storage/'.$simulation->cover_image) }}"
+                                            alt="{{ $simulation->title }}"
+                                            class="img-thumbnail"
+                                            style="width: 72px; height: 48px; object-fit: cover;"
+                                        >
+                                    @else
+                                        <span class="text-muted small">Yok</span>
+                                    @endif
+                                </td>
+                                <td>
                                     <strong>{{ $simulation->title }}</strong>
                                     @if ($simulation->excerpt)
                                         <div class="text-muted small">{{ \Illuminate\Support\Str::limit($simulation->excerpt, 90) }}</div>
@@ -46,7 +59,7 @@
                                 <td><span class="badge bg-secondary">{{ $simulation->status }}</span></td>
                                 <td>{{ optional($simulation->published_at)->format('d.m.Y H:i') ?: '-' }}</td>
                                 <td class="text-end">
-                                    <a href="{{ route('simulation.show', $simulation->slug) }}" class="btn btn-sm btn-info" target="_blank">
+                                    <a href="{{ route('simulation.admin.simulations.show', $simulation) }}" class="btn btn-sm btn-info" target="_blank">
                                         <i class="fa fa-eye"></i> Gor
                                     </a>
                                     <a href="{{ route('simulation.admin.simulations.edit', $simulation) }}" class="btn btn-sm btn-warning">
@@ -63,7 +76,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center text-muted">Kayitli simulasyon yok.</td>
+                                <td colspan="7" class="text-center text-muted">Kayitli simulasyon yok.</td>
                             </tr>
                         @endforelse
                     </tbody>

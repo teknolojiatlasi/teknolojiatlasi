@@ -91,6 +91,15 @@
           </li>
 
           <li>
+            <a><i class="fas fa-microscope"></i> Simülasyon <span class="fas fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="{{ route('simulation.admin.simulations.index') }}">Simülasyonlar</a></li>
+              <li><a href="{{ route('simulation.admin.categories.index') }}">Kategoriler</a></li>
+              <li><a href="{{ route('simulation.admin.simulations.create') }}">Yeni Simülasyon</a></li>
+            </ul>
+          </li>
+
+          <li>
             <a><i class="fas fa-users"></i> Kullanıcılar <span class="fas fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="{{ route('admin.users.index') }}">Kullanıcı listesi</a></li>

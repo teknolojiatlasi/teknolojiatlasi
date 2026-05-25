@@ -44,6 +44,12 @@
             ['label' => 'Tüm Dersler', 'icon' => 'fa-book', 'url' => route('sinav.lessons.index'), 'active' => request()->routeIs('sinav.lessons.*')],
             ['label' => 'Çözümlerim', 'icon' => 'fa-check-square-o', 'url' => auth()->check() ? route('sinav.attempts.index') : route('login', ['redirect' => url()->current()]), 'active' => request()->routeIs('sinav.attempts.*')],
         ];
+    } elseif (request()->routeIs('simulation.*')) {
+        $contextTitle = 'Simulasyonlar';
+        $contextIcon = 'fa-flask';
+        $contextLinks = [
+            ['label' => 'Tum Simulasyonlar', 'icon' => 'fa-list', 'url' => route('simulation.index'), 'active' => request()->routeIs('simulation.index')],
+        ];
     } elseif (request()->routeIs('blog.public.*')) {
         $contextTitle = 'İlan';
         $contextIcon = 'fa-pencil';
@@ -138,6 +144,11 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('sinav.*') ? 'active' : '' }}" href="{{ route('sinav.lessons.index') }}">
                         <i class="fa fa-question-circle me-1"></i> Soru Platformu
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('simulation.*') ? 'active' : '' }}" href="{{ route('simulation.index') }}">
+                        <i class="fa fa-flask me-1"></i> Simulasyonlar
                     </a>
                 </li>
                 <li class="nav-item">
