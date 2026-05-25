@@ -70,7 +70,7 @@ self.addEventListener('fetch', (event) => {
 
 self.addEventListener('push', (event) => {
     let payload = {
-        title: 'Bilgi Yildizi',
+        title: 'Teknoloji Atlası',
         body: 'Yeni bir bildirim var.',
         icon: '/images/icons/by-star-192x192.png',
         badge: '/images/icons/by-star-96x96.png',

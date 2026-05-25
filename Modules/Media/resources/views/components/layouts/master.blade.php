@@ -7,7 +7,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Media Module - {{ config('app.name', 'Bilgi Yıldızı') }}</title>
+        <title>Media Module - {{ config('app.name', 'Teknoloji Atlası') }}</title>
 
         <meta name="description" content="{{ $description ?? '' }}">
         <meta name="keywords" content="{{ $keywords ?? '' }}">

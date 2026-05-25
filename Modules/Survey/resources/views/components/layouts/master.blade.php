@@ -7,7 +7,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Survey Module - {{ config('app.name', 'Bilgi Yıldızı') }}</title>
+        <title>Survey Module - {{ config('app.name', 'Teknoloji Atlası') }}</title>
 
         @include('partials.google-analytics')
         <meta name="description" content="{{ $description ?? '' }}">

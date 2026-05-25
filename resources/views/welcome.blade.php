@@ -1,6 +1,6 @@
 @extends('layouts.app2')
 
-@section('title', 'Ana Sayfa | Bilgiyıldızı')
+@section('title', 'Ana Sayfa | Teknoloji Atlası')
 
 @push('styles')
 <style>
@@ -423,7 +423,7 @@
                         <span class="section-kicker"><i class="fa fa-compass"></i>  Tariyer ve öğrenme merkezi</span>
                         <h1 class="hero-title">Bilgiyi görünür, kariyeri erişilebilir hale getir.</h1>
                         <p class="hero-copy mb-4">
-                            Güncel içerikler, sınav hazırlığı, anketler, CV araçları ve Mülakat Hazırlığı akışı tek ana sayfada birleşiyor.
+                            Güncel içerikler, sınav hazırlığı, anketler, CV araçları ve Topluluk akışı tek ana sayfada birleşiyor.
                         </p>
                         <div class="hero-actions d-flex flex-wrap gap-3 mb-4">
                             <a href="{{ route('blog.public.index') }}" class="btn btn-warning text-dark rounded-pill">İlanları Keşfet <i class="fa fa-arrow-right ms-2"></i></a>
@@ -739,7 +739,7 @@
                     <article class="module-card glass-card h-100">
                         <div class="card-body-pad">
                             <span class="module-icon module-orange"><i class="fa fa-users"></i></span>
-                            <h3 class="module-title h5 mb-3">Mülakat Hazırlığı</h3>
+                            <h3 class="module-title h5 mb-3">Topluluk</h3>
                             <p class="text-secondary">Deneyim paylaş, keşfet ve mülakat odaklı topluluk akışına bağlan.</p>
                             <div class="small text-muted fw-semibold mb-3">Topluluk görünürlüğü</div>
                             <a href="{{ route('sosial.feed') }}" class="btn btn-outline-warning rounded-pill px-3">Akışa Git</a>

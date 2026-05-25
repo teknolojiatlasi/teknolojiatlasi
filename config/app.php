@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Bilgi Yıldızı'),
+    'name' => env('APP_NAME', 'Teknoloji Atlası'),
 
     /*
     |--------------------------------------------------------------------------

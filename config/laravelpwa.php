@@ -3,8 +3,8 @@
 return [
     'name' => 'LaravelPWA',
     'manifest' => [
-        'name' => env('APP_NAME', 'Bilgi Yildizi'),
-        'short_name' => 'Bilgi',
+        'name' => env('APP_NAME', 'Teknoloji Atlası'),
+        'short_name' => 'Teknoloji Atlası',
         'start_url' => '/',
         'background_color' => '#f8fafc',
         'theme_color' => '#0f172a',
@@ -41,7 +41,7 @@ return [
         'shortcuts' => [
             [
                 'name' => 'Ana Sayfa',
-                'description' => 'Bilgi Yildizi ana sayfasini ac',
+                'description' => 'Teknoloji Atlası ana sayfasini ac',
                 'url' => '/',
                 'icons' => [
                     "src" => "/images/icons/by-star-192x192.png",
@@ -59,7 +59,7 @@ return [
             ]
         ],
         'custom' => [
-            'description' => 'Bilgi Yildizi modullerini mobil cihazlarda uygulama gibi kullanin.',
+            'description' => 'Teknoloji Atlası modullerini mobil cihazlarda uygulama gibi kullanin.',
             'lang' => 'tr',
             'dir' => 'ltr',
             'categories' => ['education', 'productivity', 'business'],

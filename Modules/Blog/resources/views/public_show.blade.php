@@ -1,5 +1,5 @@
 @extends('layouts.app2')
-@section('title', $blog->title . ' | Bilgiyıldızı')
+@section('title', $blog->title . ' | Teknoloji Atlası')
 @section('meta')
 @php
     $shareDescription = \Illuminate\Support\Str::limit(trim(preg_replace('/\s+/', ' ', strip_tags($blog->content))), 180);
@@ -9,7 +9,7 @@
 <meta name="description" content="{{ $shareDescription }}">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Bilgiyıldızı">
+<meta property="og:site_name" content="Teknoloji Atlası">
 <meta property="og:title" content="{{ $blog->title }}">
 <meta property="og:description" content="{{ $shareDescription }}">
 <meta property="og:url" content="{{ route('blog.public.show', $blog) }}">

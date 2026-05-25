@@ -22,11 +22,11 @@
     };
 
     $socialNavLinks = [
-        ['label' => 'Tüm Memur İlanları', 'icon' => 'fa fa-globe', 'url' => 'https://bilgiyildizi.com.tr'],
-        ['label' => 'Instagram', 'icon' => 'fab fa-instagram', 'url' => 'https://instagram.com/bilgi__yildizi'],
+        ['label' => 'Tüm Memur İlanları', 'icon' => 'fa fa-globe', 'url' => 'https://teknolojiatlasi.com.tr'],
+        ['label' => 'Instagram', 'icon' => 'fab fa-instagram', 'url' => 'https://instagram.com/teknolojiatlasi'],
         ['label' => 'Sınava Hazırlık', 'icon' => 'fab fa-youtube', 'url' => 'https://youtube.com/channel/UC2GYfggaXT0uNuxfvU690KA/videos'],
-        ['label' => 'Telegram', 'icon' => 'fab fa-telegram', 'url' => 'https://t.me/bilgiyildizi'],
-        ['label' => 'Twitter', 'icon' => 'fab fa-twitter', 'url' => 'https://twitter.com/YildiziBilgi'],
+        ['label' => 'Telegram', 'icon' => 'fab fa-telegram', 'url' => 'https://t.me/teknolojiatlasi'],
+        ['label' => 'Twitter', 'icon' => 'fab fa-twitter', 'url' => 'https://twitter.com/teknolojiatlasi'],
     ];
 
     $contextTitle = null;
@@ -87,7 +87,7 @@
             ['label' => 'Tüm Anketler', 'icon' => 'fa-list', 'url' => route('survey.public.index'), 'active' => request()->routeIs('survey.public.index')],
         ];
     } elseif (request()->routeIs('sosial.*')) {
-        $contextTitle = 'Mülakat Hazırlığı';
+        $contextTitle = 'Topluluk';
         $contextIcon = 'fa-users';
         $contextLinks = [
             ['label' => 'Akış', 'icon' => 'fa-rss', 'url' => route('sosial.feed'), 'active' => request()->routeIs('sosial.feed')],
@@ -111,7 +111,7 @@
     <div class="container">
         <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{{ route('anasayfa') }}">
             <i class="fa fa-star text-warning" style="font-size: 28px;"></i>
-            <span>Bilgi Yıldızı</span>
+            <span>Teknoloji Atlası</span>
         </a>
 
         <button class="navbar-toggler" type="button" aria-controls="navMenu" aria-expanded="false" aria-label="Menüyü aç veya kapat">
@@ -147,7 +147,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('sosial.*') ? 'active' : '' }}" href="{{ route('sosial.feed') }}">
-                        <i class="fa fa-users me-1"></i> Mülakat Hazırlığı
+                        <i class="fa fa-users me-1"></i> Topluluk
                     </a>
                 </li>
                 <li class="nav-item">

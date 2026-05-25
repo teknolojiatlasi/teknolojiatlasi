@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Bilgi Yildizi') }}</title>
+        <title>{{ config('app.name', 'Teknoloji Atlası') }}</title>
         @include('partials.google-analytics')
         <link rel="icon" type="image/svg+xml" href="{{ asset('favicon-star.svg') }}">
         <link rel="shortcut icon" href="{{ asset('favicon-star.svg') }}">
@@ -27,7 +27,7 @@
                                 <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 text-white shadow-lg shadow-blue-900/30">
                                     ★
                                 </span>
-                                <span>Bilgi Yildizi</span>
+                                <span>Teknoloji Atlası</span>
                             </a>
                         </div>
 
@@ -49,7 +49,7 @@
                                 <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 text-white shadow-lg shadow-blue-900/20">
                                     ★
                                 </span>
-                                <span>Bilgi Yildizi</span>
+                                <span>Teknoloji Atlası</span>
                             </a>
                         </div>
 

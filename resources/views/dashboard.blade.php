@@ -33,7 +33,7 @@
                 'gradient' => 'linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)',
             ],
             [
-                'title' => 'Mülakat Hazırlığı',
+                'title' => 'Topluluk',
                 'description' => 'Akışa katılın, paylaşımları görün ve toplulukla etkileşim kurun.',
                 'url' => route('sosial.feed'),
                 'cta' => 'Akışa Git',

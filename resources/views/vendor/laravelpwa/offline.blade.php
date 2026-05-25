@@ -66,9 +66,9 @@
 </head>
 <body>
     <section class="offline-card">
-        <div class="offline-badge">BY</div>
+        <div class="offline-badge">TA</div>
         <h1>Internet baglantisi yok</h1>
-        <p>Bilgi Yildizi uygulamasi su anda cihaza baglanamiyor. Baglanti geri geldiginde sayfayi yenileyebilir veya ana sayfaya donebilirsiniz.</p>
+        <p>Teknoloji Atlası uygulamasi su anda cihaza baglanamiyor. Baglanti geri geldiginde sayfayi yenileyebilir veya ana sayfaya donebilirsiniz.</p>
         <a href="{{ url('/') }}">Ana sayfaya don</a>
     </section>
 </body>

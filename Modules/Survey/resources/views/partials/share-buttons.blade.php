@@ -15,7 +15,7 @@
             <a class="btn btn-primary" href="https://www.facebook.com/sharer/sharer.php?u={{ $encodedUrl }}" target="_blank" rel="noopener noreferrer">Facebook</a>
             <a class="btn btn-info text-white" href="https://www.linkedin.com/sharing/share-offsite/?url={{ $encodedUrl }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a class="btn btn-dark" href="https://t.me/share/url?url={{ $encodedUrl }}&text={{ $encodedText }}" target="_blank" rel="noopener noreferrer">Telegram</a>
-            <a class="btn btn-outline-secondary" style="background-color: lawngreen" href="{{ url('/sosial') }}">Mülakat Hazırlığı</a>
+            <a class="btn btn-outline-secondary" style="background-color: lawngreen" href="{{ url('/sosial') }}">Topluluk</a>
             <a class="btn btn-outline-primary" style="background-color: rgb(230, 132, 144)"  href="{{ url('/') }}">Anasayfa</a>
         </div>
         <div class="mt-3">

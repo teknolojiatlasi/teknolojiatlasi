@@ -83,7 +83,7 @@ class Blog extends Model
         }
 
         return preg_replace_callback(
-            '#(?:(?:https?:)?//(?:www\.)?bilgiyildizi\.com\.tr)?/storage/(blogs/(?:covers|images|editor)/[^"\'>\s?]+)#i',
+            '#(?:(?:https?:)?//(?:www\.)?teknolojiatlasi\.com\.tr)?/storage/(blogs/(?:covers|images|editor)/[^"\'>\s?]+)#i',
             static function (array $matches): string {
                 $path = ltrim((string) ($matches[1] ?? ''), '/');
 

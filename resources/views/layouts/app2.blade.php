@@ -81,7 +81,8 @@
         }
 
         .navbar.navbar-blur {
-            background: rgba(15, 23, 42, 0.92) !important;
+            background: rgba(17, 185, 200, 0.92) !important;
+
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
         }
@@ -271,7 +272,7 @@
         }
 
         .footer {
-            background: #0f172a;
+            background:rgb(17 185 200 / 92%) !important;
             color: #cbd5e1;
         }
 

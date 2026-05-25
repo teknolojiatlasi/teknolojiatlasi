@@ -12,7 +12,7 @@
         </button>
         <div class="pwa-install-badge">BY</div>
         <div class="pwa-install-copy">
-            <p class="pwa-install-kicker">Bilgi Yildizi uygulamasi</p>
+            <p class="pwa-install-kicker">Teknoloji Atlası uygulamasi</p>
             <h2 class="pwa-install-title" data-pwa-title>Telefonunda daha hizli ac</h2>
             <p class="pwa-install-text" data-pwa-text>
                 Uygulamayi ana ekrana ekleyerek tek dokunusla acabilir ve daha hizli deneyim elde edebilirsin.
@@ -238,7 +238,7 @@
             deferredPrompt = event;
 
             if (title) {
-                title.textContent = 'Bilgi Yıldızı uygulamasini ana ekrana ekle';
+                title.textContent = 'Teknoloji Atlası uygulamasini ana ekrana ekle';
             }
 
             if (text) {
