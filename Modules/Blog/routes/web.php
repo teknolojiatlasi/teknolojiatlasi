@@ -12,7 +12,7 @@ use Modules\Blog\Http\Controllers\BlogMediaController;
 Route::get('/is-ilani', [BlogController::class, 'publicIndex'])->name('blog.public.index');
 
 Route::get('/is-ilani/{blog}', [BlogController::class, 'publicShow'])->name('blog.public.show');
-Route::get('/blog/{blog}', [BlogController::class, 'publicShow'])->name('blog.public.show');
+Route::get('/blog/{blog}', [BlogController::class, 'publicShow'])->name('blog.public.legacy-show');
 
 Route::get('/blog-media/{path}', [BlogMediaController::class, 'show'])
     ->where('path', '.*')

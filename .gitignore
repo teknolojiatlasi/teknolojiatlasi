@@ -3,11 +3,12 @@
 /public/build
 /public/hot
 /public/storage
+/bootstrap/cache/*.php
 /storage/*.key
 /vendor
 .env
 .env.prod
-.zip
+*.zip
 .env.backup
 .env.production
 .phpunit.result.cache
