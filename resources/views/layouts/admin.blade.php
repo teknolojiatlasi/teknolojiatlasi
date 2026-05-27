@@ -8,6 +8,7 @@
     <title>@yield('title', 'Yönetim Paneli - Gentelella')</title>
     <meta name="robots" content="noindex, nofollow">
     @include('partials.google-analytics')
+    @include('partials.google-adsense')
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon-star.svg') }}">
     <link rel="shortcut icon" href="{{ asset('favicon-star.svg') }}">
     {{-- Gentelella CSS --}}

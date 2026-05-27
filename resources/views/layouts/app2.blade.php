@@ -7,6 +7,7 @@
     @include('partials.seo')
     @yield('meta')
     @include('partials.google-analytics')
+    @include('partials.google-adsense')
     @if (config('services.turnstile.enabled') && config('services.turnstile.site_key'))
         <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     @endif

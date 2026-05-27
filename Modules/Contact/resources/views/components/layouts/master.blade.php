@@ -8,6 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         @include('partials.seo')
         @include('partials.google-analytics')
+        @include('partials.google-adsense')
         <link rel="icon" type="image/svg+xml" href="{{ asset('favicon-star.svg') }}">
         <link rel="shortcut icon" href="{{ asset('favicon-star.svg') }}">
 

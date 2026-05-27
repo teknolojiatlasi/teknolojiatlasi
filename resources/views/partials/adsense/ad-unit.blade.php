@@ -119,6 +119,12 @@
                     }
 
                     window.__adsenseScriptPromise = new Promise(function (resolve, reject) {
+                        var existingScript = document.querySelector('script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]');
+                        if (existingScript) {
+                            resolve();
+                            return;
+                        }
+
                         var script = document.createElement('script');
                         script.async = true;
                         script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ $adsenseClientId }}';
