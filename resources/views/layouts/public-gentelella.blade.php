@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @include('partials.seo')
     @include('partials.google-analytics')
+    @include('partials.google-adsense')
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon-star.svg') }}">
     <link rel="shortcut icon" href="{{ asset('favicon-star.svg') }}">
     <link rel="stylesheet" href="{{ asset('vendor/gentelella/assets/init-modern-C9VwsGcw.css') }}">

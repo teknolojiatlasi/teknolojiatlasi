@@ -9,6 +9,7 @@
     @endif
     @include('partials.seo')
     @include('partials.google-analytics')
+    @include('partials.google-adsense')
     <link rel="stylesheet" href="{{ asset('vendor/front/company/assets/vendor/bootstrap/css/bootstrap.min.css') }}">
     <style>
         body { background: #f5f7fb; }

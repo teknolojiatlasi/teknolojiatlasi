@@ -10,6 +10,7 @@
         <title>Page Module - {{ config('app.name', 'Teknoloji Atlası') }}</title>
 
         @include('partials.google-analytics')
+        @include('partials.google-adsense')
         <meta name="description" content="{{ $description ?? '' }}">
         <meta name="keywords" content="{{ $keywords ?? '' }}">
         <meta name="author" content="{{ $author ?? '' }}">
