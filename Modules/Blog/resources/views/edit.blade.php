@@ -67,18 +67,11 @@
                   required>{{ old('content', $blog->content) }}</textarea>
     </div>
 
-    <div class="mb-3">
-        <label class="form-label">Kapak Resmi</label>
-        <input type="file" name="cover_image" class="form-control">
-
-        @if($blog->cover_image)
-            <div class="mt-2">
-                <img src="{{ route('blog.media.show', ['path' => $blog->cover_image]) }}"
-                     style="max-height:150px;"
-                     class="img-thumbnail">
-            </div>
-        @endif
-    </div>
+    @include('blog::partials.media-picker', [
+        'mediaItems' => $mediaItems,
+        'selectedMediaId' => old('cover_media_id', $blog->cover_media_id),
+        'previewUrl' => old('cover_media_preview_url', $blog->cover_image_url),
+    ])
 
     <div class="form-check mb-3">
         <input type="hidden" name="share_on_social" value="0">

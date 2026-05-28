@@ -18,7 +18,7 @@
         <div class="row g-4">
             @forelse($blogs as $blog)
                 @php
-                    $cover = $blog->cover_image ? route('blog.media.show', ['path' => $blog->cover_image]) : null;
+                    $cover = $blog->cover_image_url;
                 @endphp
                 <div class="col-12 col-md-6 col-lg-4">
                     <a href="{{ route('blog.public.show', $blog) }}" class="text-decoration-none text-reset d-block h-100">

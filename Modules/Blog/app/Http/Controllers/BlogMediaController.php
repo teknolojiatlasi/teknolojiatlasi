@@ -14,7 +14,7 @@ class BlogMediaController extends Controller
 
         abort_unless($path !== '', 404);
         abort_unless(! Str::contains($path, ['..', '\\']), 404);
-        abort_unless(Str::startsWith($path, 'blogs/'), 404);
+        abort_unless(Str::startsWith($path, ['blogs/', 'uploads/covers/']), 404);
         abort_unless(Storage::disk('public')->exists($path), 404);
 
         return Storage::disk('public')->response($path, headers: [
