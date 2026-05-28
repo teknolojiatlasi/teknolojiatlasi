@@ -635,6 +635,7 @@
                         participant_email: form.querySelector('input[name="participant_email"]')?.value,
                         answers: [],
                     };
+                    window.botProtection?.appendToObject(form, payload);
 
                     form.querySelectorAll('[data-question-id]').forEach((wrapper) => {
                         const questionId = Number(wrapper.dataset.questionId);
@@ -689,6 +690,7 @@
                         }
 
                         form.reset();
+                        window.botProtection?.reset(form);
 
                         if (alertBox) {
                             alertBox.classList.remove('d-none');
