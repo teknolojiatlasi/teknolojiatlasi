@@ -14,12 +14,32 @@ class MediaController extends Controller
 {
     public function index(Request $request)
     {
+        $search = trim((string) $request->query('q', ''));
+        $selectedCollection = trim((string) $request->query('collection', ''));
+
         $mediaItems = Media::query()
+            ->when($search !== '', function ($query) use ($search) {
+                $like = '%' . $search . '%';
+
+                $query->where(function ($query) use ($like) {
+                    $query->where('file_name', 'like', $like)
+                        ->orWhere('file_path', 'like', $like)
+                        ->orWhere('collection', 'like', $like);
+                });
+            })
+            ->when($selectedCollection !== '', fn ($query) => $query->where('collection', $selectedCollection))
             ->latest()
             ->paginate(36)
             ->withQueryString();
 
-        return view('media::index', compact('mediaItems'));
+        $collections = Media::query()
+            ->whereNotNull('collection')
+            ->where('collection', '!=', '')
+            ->distinct()
+            ->orderBy('collection')
+            ->pluck('collection');
+
+        return view('media::index', compact('mediaItems', 'collections', 'search', 'selectedCollection'));
     }
 
     public function create()
@@ -31,6 +51,7 @@ class MediaController extends Controller
     {
         $request->validate([
             'images' => ['required', 'array', 'max:20'],
+            'collection' => ['nullable', 'string', 'max:80'],
             'images.*' => [
                 'required',
                 'file',
@@ -43,7 +64,7 @@ class MediaController extends Controller
         ]);
 
         foreach ($request->file('images', []) as $image) {
-            $this->storeImage($image, $request->user()?->id);
+            $this->storeImage($image, $request->user()?->id, $request->string('collection')->trim()->toString() ?: 'Kapak Resimleri');
         }
 
         return redirect()
@@ -86,7 +107,7 @@ class MediaController extends Controller
             ->with('success', 'Resim silindi.');
     }
 
-    protected function storeImage(UploadedFile $file, ?int $userId): Media
+    protected function storeImage(UploadedFile $file, ?int $userId, string $collection): Media
     {
         $path = WebpImageUploader::store(
             file: $file,
@@ -101,6 +122,7 @@ class MediaController extends Controller
         return Media::create([
             'file_name' => basename($path),
             'file_path' => $path,
+            'collection' => $collection,
             'mime_type' => Storage::disk('public')->mimeType($path) ?: $file->getMimeType(),
             'size' => Storage::disk('public')->size($path),
             'user_id' => $userId,

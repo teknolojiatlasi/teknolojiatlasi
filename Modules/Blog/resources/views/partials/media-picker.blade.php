@@ -82,9 +82,27 @@
             </div>
             <div class="modal-body">
                 @if($mediaItems->count())
+                    <div class="row g-2 mb-3">
+                        <div class="col-12 col-md-7">
+                            <input type="search"
+                                   id="mediaPickerSearch"
+                                   class="form-control"
+                                   placeholder="Dosya adi veya grup ara">
+                        </div>
+                        <div class="col-12 col-md-5">
+                            <select id="mediaPickerCollection" class="form-control">
+                                <option value="">Tum gruplar</option>
+                                @foreach(($mediaCollections ?? collect()) as $collection)
+                                    <option value="{{ $collection }}">{{ $collection }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="row g-3">
                         @foreach($mediaItems as $media)
-                            <div class="col-6 col-md-4 col-lg-3">
+                            <div class="col-6 col-md-4 col-lg-3 media-picker-card"
+                                 data-file-name="{{ Str::lower($media->file_name) }}"
+                                 data-collection="{{ Str::lower($media->collection ?? '') }}">
                                 <button type="button"
                                         class="media-library-item btn p-0 border w-100 text-start {{ (string) $selectedMediaId === (string) $media->id ? 'border-primary border-3' : '' }}"
                                         data-media-id="{{ $media->id }}"
@@ -94,9 +112,15 @@
                                          class="w-100 rounded-top"
                                          style="height: 140px; object-fit: cover;">
                                     <span class="d-block small text-truncate p-2">{{ $media->file_name }}</span>
+                                    @if($media->collection)
+                                        <span class="d-block small text-muted px-2 pb-2">{{ $media->collection }}</span>
+                                    @endif
                                 </button>
                             </div>
                         @endforeach
+                    </div>
+                    <div class="alert alert-warning mt-3 mb-0 d-none" id="mediaPickerEmpty">
+                        Bu aramaya uygun resim bulunamadi.
                     </div>
                 @else
                     <div class="alert alert-info mb-0">Medya kutuphanesinde henuz resim yok.</div>
@@ -136,6 +160,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const uploadInput = document.getElementById('coverImageInput');
     const uploadRadio = document.getElementById('coverSourceUpload');
     const libraryRadio = document.getElementById('coverSourceLibrary');
+    const searchInput = document.getElementById('mediaPickerSearch');
+    const collectionSelect = document.getElementById('mediaPickerCollection');
+    const emptyMessage = document.getElementById('mediaPickerEmpty');
     let selectedMediaId = mediaIdInput?.value || '';
     let selectedMediaUrl = previewUrlInput?.value || '';
 
@@ -196,6 +223,30 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         reader.readAsDataURL(uploadInput.files[0]);
     });
+
+    function filterMediaPicker() {
+        const search = (searchInput?.value || '').toLowerCase().trim();
+        const collection = (collectionSelect?.value || '').toLowerCase().trim();
+        let visibleCount = 0;
+
+        document.querySelectorAll('.media-picker-card').forEach(function (card) {
+            const fileName = card.dataset.fileName || '';
+            const cardCollection = card.dataset.collection || '';
+            const matchesSearch = ! search || fileName.includes(search) || cardCollection.includes(search);
+            const matchesCollection = ! collection || cardCollection === collection;
+            const visible = matchesSearch && matchesCollection;
+
+            card.classList.toggle('d-none', ! visible);
+            if (visible) {
+                visibleCount += 1;
+            }
+        });
+
+        emptyMessage?.classList.toggle('d-none', visibleCount > 0);
+    }
+
+    searchInput?.addEventListener('input', filterMediaPicker);
+    collectionSelect?.addEventListener('change', filterMediaPicker);
 });
 </script>
 @endpush

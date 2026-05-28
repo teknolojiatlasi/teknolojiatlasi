@@ -139,9 +139,10 @@ class BlogController extends Controller
     public function create()
     {
         $categories = BlogCategory::whereNull('parent_id')->with('children')->get();
-        $mediaItems = Media::query()->latest()->take(60)->get();
+        $mediaItems = Media::query()->latest()->take(200)->get();
+        $mediaCollections = $this->mediaCollections();
 
-        return view('blog::create', compact('categories', 'mediaItems'));
+        return view('blog::create', compact('categories', 'mediaItems', 'mediaCollections'));
     }
 
     public function store(Request $request)
@@ -171,9 +172,10 @@ class BlogController extends Controller
     {
         $blog->load(['coverMedia'])->loadExists('socialPost');
         $categories = BlogCategory::whereNull('parent_id')->with('children')->get();
-        $mediaItems = Media::query()->latest()->take(60)->get();
+        $mediaItems = Media::query()->latest()->take(200)->get();
+        $mediaCollections = $this->mediaCollections();
 
-        return view('blog::edit', compact('blog', 'categories', 'mediaItems'));
+        return view('blog::edit', compact('blog', 'categories', 'mediaItems', 'mediaCollections'));
     }
 
     public function update(Request $request, Blog $blog)
@@ -279,10 +281,21 @@ class BlogController extends Controller
         return Media::create([
             'file_name' => basename($path),
             'file_path' => $path,
+            'collection' => 'Kapak Resimleri',
             'mime_type' => Storage::disk('public')->mimeType($path) ?: $file->getMimeType(),
             'size' => Storage::disk('public')->size($path),
             'user_id' => $userId,
         ]);
+    }
+
+    protected function mediaCollections()
+    {
+        return Media::query()
+            ->whereNotNull('collection')
+            ->where('collection', '!=', '')
+            ->distinct()
+            ->orderBy('collection')
+            ->pluck('collection');
     }
 
     protected function storeBlogImage(UploadedFile $file, string $directory, string $errorKey): string
