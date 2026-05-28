@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\Blog\Http\Controllers;
+namespace Modules\Simulation\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class BlogMediaController extends Controller
+class SimulationMediaController extends Controller
 {
     public function show(string $path)
     {
@@ -14,7 +14,7 @@ class BlogMediaController extends Controller
 
         abort_unless($path !== '', 404);
         abort_unless(! Str::contains($path, ['..', '\\']), 404);
-        abort_unless(Str::startsWith($path, ['blogs/', 'uploads/covers/']), 404);
+        abort_unless(Str::startsWith($path, 'simulations/'), 404);
         abort_unless(Storage::disk('public')->exists($path), 404);
 
         return Storage::disk('public')->response($path, headers: [

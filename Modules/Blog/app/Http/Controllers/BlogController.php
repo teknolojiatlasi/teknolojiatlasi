@@ -15,6 +15,7 @@ use Modules\Blog\Models\Blog;
 use Modules\Blog\Models\BlogCategory;
 use Modules\Blog\Models\BlogImage;
 use Modules\Blog\Support\BlogSocialSync;
+use Modules\Media\Models\Media;
 
 class BlogController extends Controller
 {
@@ -39,7 +40,7 @@ class BlogController extends Controller
             );
         }
 
-        $blogsQuery = Blog::with('category')->where('status', true);
+        $blogsQuery = Blog::with(['category', 'coverMedia'])->where('status', true);
 
         if ($selectedCategory) {
             $categoryIds = [$selectedCategory->id];
@@ -79,7 +80,7 @@ class BlogController extends Controller
         }
 
         $blog = Cache::remember("public.blog.show.{$blog->id}.v1", now()->addMinutes(10), function () use ($blog) {
-            $blog->load(['category', 'images']);
+            $blog->load(['category', 'images', 'coverMedia']);
             $blog->loadCount('comments');
 
             return $blog;
@@ -94,7 +95,7 @@ class BlogController extends Controller
         });
 
         $latestBlogs = Cache::remember("public.blog.latest-sidebar.{$blog->id}.v1", now()->addMinutes(10), function () use ($blog) {
-            return Blog::with('category')
+            return Blog::with(['category', 'coverMedia'])
                 ->where('status', true)
                 ->where('id', '!=', $blog->id)
                 ->latest()
@@ -116,7 +117,7 @@ class BlogController extends Controller
 
     public function show(Blog $blog)
     {
-        $blog->load(['category', 'images']);
+        $blog->load(['category', 'images', 'coverMedia']);
         $blog->loadCount('comments');
 
         $comments = $blog->comments()
@@ -138,21 +139,18 @@ class BlogController extends Controller
     public function create()
     {
         $categories = BlogCategory::whereNull('parent_id')->with('children')->get();
+        $mediaItems = Media::query()->latest()->take(200)->get();
+        $mediaCollections = $this->mediaCollections();
 
-        return view('blog::create', compact('categories'));
+        return view('blog::create', compact('categories', 'mediaItems', 'mediaCollections'));
     }
 
     public function store(Request $request)
     {
         $data = $request->validate($this->rules());
 
-        if ($request->hasFile('cover_image')) {
-            $data['cover_image'] = $this->storeBlogImage(
-                $request->file('cover_image'),
-                'blogs/covers',
-                'cover_image',
-            );
-        }
+        $this->applyCoverImageData($request, $data);
+        unset($data['cover_source'], $data['cover_media_preview_url'], $data['share_on_social']);
 
         $data['slug'] = Str::slug($data['title']);
         $data['status'] = 1;
@@ -172,27 +170,20 @@ class BlogController extends Controller
 
     public function edit(Blog $blog)
     {
-        $blog->loadExists('socialPost');
+        $blog->load(['coverMedia'])->loadExists('socialPost');
         $categories = BlogCategory::whereNull('parent_id')->with('children')->get();
+        $mediaItems = Media::query()->latest()->take(200)->get();
+        $mediaCollections = $this->mediaCollections();
 
-        return view('blog::edit', compact('blog', 'categories'));
+        return view('blog::edit', compact('blog', 'categories', 'mediaItems', 'mediaCollections'));
     }
 
     public function update(Request $request, Blog $blog)
     {
         $data = $request->validate($this->rules());
 
-        if ($request->hasFile('cover_image')) {
-            if ($blog->cover_image) {
-                Storage::disk('public')->delete($blog->cover_image);
-            }
-
-            $data['cover_image'] = $this->storeBlogImage(
-                $request->file('cover_image'),
-                'blogs/covers',
-                'cover_image',
-            );
-        }
+        $this->applyCoverImageData($request, $data);
+        unset($data['cover_source'], $data['cover_media_preview_url'], $data['share_on_social']);
 
         $data['slug'] = Str::slug($data['title']);
 
@@ -260,6 +251,53 @@ class BlogController extends Controller
         }
     }
 
+    protected function applyCoverImageData(Request $request, array &$data): void
+    {
+        if ($request->hasFile('cover_image')) {
+            $media = $this->storeCoverMedia($request->file('cover_image'), $request->user()?->id);
+
+            $data['cover_media_id'] = $media->id;
+            $data['cover_image'] = $media->file_path;
+
+            return;
+        }
+
+        if ($request->filled('cover_media_id')) {
+            $media = Media::query()->findOrFail($request->integer('cover_media_id'));
+
+            $data['cover_media_id'] = $media->id;
+            $data['cover_image'] = $media->file_path;
+        }
+    }
+
+    protected function storeCoverMedia(UploadedFile $file, ?int $userId): Media
+    {
+        $path = $this->storeBlogImage(
+            $file,
+            'uploads/covers',
+            'cover_image',
+        );
+
+        return Media::create([
+            'file_name' => basename($path),
+            'file_path' => $path,
+            'collection' => 'Kapak Resimleri',
+            'mime_type' => Storage::disk('public')->mimeType($path) ?: $file->getMimeType(),
+            'size' => Storage::disk('public')->size($path),
+            'user_id' => $userId,
+        ]);
+    }
+
+    protected function mediaCollections()
+    {
+        return Media::query()
+            ->whereNotNull('collection')
+            ->where('collection', '!=', '')
+            ->distinct()
+            ->orderBy('collection')
+            ->pluck('collection');
+    }
+
     protected function storeBlogImage(UploadedFile $file, string $directory, string $errorKey): string
     {
         return WebpImageUploader::store(
@@ -282,7 +320,7 @@ class BlogController extends Controller
             'mimes:jpg,jpeg,png,webp',
             'extensions:jpg,jpeg,png,webp',
             'mimetypes:image/jpeg,image/png,image/webp',
-            'max:4096',
+            'max:2048',
         ];
 
         return [
@@ -290,6 +328,9 @@ class BlogController extends Controller
             'title' => 'required|string|max:255',
             'content' => 'required',
             'share_on_social' => ['nullable', 'boolean'],
+            'cover_source' => ['nullable', 'in:upload,library'],
+            'cover_media_id' => ['nullable', 'integer', 'exists:media,id'],
+            'cover_media_preview_url' => ['nullable', 'string', 'max:2048'],
             'cover_image' => $imageRules,
             'images' => ['nullable', 'array', 'max:10'],
             'images.*' => $imageRules,

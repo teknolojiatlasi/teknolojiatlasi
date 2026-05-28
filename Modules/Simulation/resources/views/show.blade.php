@@ -27,7 +27,7 @@
                         <iframe src="{{ $simulation->video_url }}" title="{{ $simulation->title }}" allowfullscreen></iframe>
                     </div>
                 @elseif ($simulation->cover_image)
-                    <img src="{{ asset('storage/'.$simulation->cover_image) }}" alt="{{ $simulation->title }}" class="img-fluid rounded-3">
+                    <img src="{{ $simulation->cover_image_url }}" alt="{{ $simulation->title }}" class="img-fluid rounded-3">
                 @endif
 
                 @if ($simulation->content)

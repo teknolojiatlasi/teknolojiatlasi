@@ -4,12 +4,17 @@ use Illuminate\Support\Facades\Route;
 use Modules\Simulation\Http\Controllers\Admin\SimulationAdminController;
 use Modules\Simulation\Http\Controllers\Admin\SimulationCategoryController;
 use Modules\Simulation\Http\Controllers\SimulationController;
+use Modules\Simulation\Http\Controllers\SimulationMediaController;
 
 Route::get('/simulasyonlar', [SimulationController::class, 'index'])
     ->name('simulation.index');
 
 Route::get('/simulasyonlar/kategori/{category}', [SimulationController::class, 'category'])
     ->name('simulation.category');
+
+Route::get('/simulasyonlar/media/{path}', [SimulationMediaController::class, 'show'])
+    ->where('path', '.*')
+    ->name('simulation.media.show');
 
 Route::get('/simulasyonlar/{slug}', [SimulationController::class, 'show'])
     ->name('simulation.show');

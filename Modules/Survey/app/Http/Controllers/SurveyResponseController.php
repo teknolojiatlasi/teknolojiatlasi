@@ -4,6 +4,7 @@ namespace Modules\Survey\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Modules\Survey\Models\Survey;
@@ -74,6 +75,7 @@ class SurveyResponseController extends Controller
 
             return $response;
         });
+        $this->clearPublicCache($survey);
 
         $responsePayload = response()->json([
             'message' => 'Yanıtınız kaydedildi',
@@ -172,5 +174,13 @@ class SurveyResponseController extends Controller
     protected function submissionCookieKey(int $surveyId): string
     {
         return 'survey_submitted_'.$surveyId;
+    }
+
+    protected function clearPublicCache(Survey $survey): void
+    {
+        Cache::forget('public.home.active-survey.v1');
+        Cache::forget('public.surveys.active.v1');
+        Cache::forget("public.surveys.show.{$survey->id}.v1");
+        Cache::forget("public.surveys.results.{$survey->id}.v1");
     }
 }

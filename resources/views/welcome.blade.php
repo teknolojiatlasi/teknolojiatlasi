@@ -840,6 +840,7 @@
                                 </div>
 
                                 <form id="survey-form-{{ $activeSurvey->id }}" class="survey-ajax-form" data-submit-url="{{ route('survey.public.submit', $activeSurvey) }}">
+                                    @include('partials.bot-protection')
                                     <div class="row g-3 mb-3">
                                         <div class="col-md-6"><input type="text" name="participant_name" class="form-control" placeholder="İsim (isteğe bağlı)"></div>
                                         <div class="col-md-6"><input type="email" name="participant_email" class="form-control" placeholder="E-posta (isteğe bağlı)"></div>

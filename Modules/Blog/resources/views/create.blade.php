@@ -74,16 +74,11 @@
         @enderror
     </div>
 
-    <div class="mb-3">
-        <label class="form-label">Kapak Resmi</label>
-        <input type="file"
-               name="cover_image"
-               class="form-control @error('cover_image') is-invalid @enderror"
-               accept=".jpg,.jpeg,.png,.webp">
-        @error('cover_image')
-            <div class="invalid-feedback d-block">{{ $message }}</div>
-        @enderror
-    </div>
+    @include('blog::partials.media-picker', [
+        'mediaItems' => $mediaItems,
+        'selectedMediaId' => old('cover_media_id'),
+        'previewUrl' => old('cover_media_preview_url'),
+    ])
 
     <div class="form-check mb-3">
         <input type="hidden" name="share_on_social" value="0">

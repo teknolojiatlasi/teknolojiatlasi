@@ -4,8 +4,10 @@ namespace Modules\Blog\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Cache;
 use Modules\Blog\Support\HtmlSanitizer;
+use Modules\Media\Models\Media;
 use Modules\Sossial\Models\Post as SocialPost;
 
 class Blog extends Model
@@ -16,6 +18,7 @@ class Blog extends Model
         'slug',
         'content',
         'cover_image',
+        'cover_media_id',
         'status',
     ];
 
@@ -57,6 +60,11 @@ class Blog extends Model
         return $this->hasMany(BlogImage::class);
     }
 
+    public function coverMedia(): BelongsTo
+    {
+        return $this->belongsTo(Media::class, 'cover_media_id');
+    }
+
     public function comments(): HasMany
     {
         return $this->hasMany(BlogComment::class);
@@ -65,6 +73,19 @@ class Blog extends Model
     public function socialPost(): HasOne
     {
         return $this->hasOne(SocialPost::class, 'blog_id');
+    }
+
+    public function getCoverImageUrlAttribute(): ?string
+    {
+        if ($this->coverMedia) {
+            return $this->coverMedia->url;
+        }
+
+        if ($this->cover_image) {
+            return route('blog.media.show', ['path' => $this->cover_image]);
+        }
+
+        return null;
     }
 
     public function flushPublicCaches(): void

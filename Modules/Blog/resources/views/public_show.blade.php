@@ -3,7 +3,7 @@
 @section('meta')
 @php
     $shareDescription = \Illuminate\Support\Str::limit(trim(preg_replace('/\s+/', ' ', strip_tags($blog->content))), 180);
-    $shareImage = $blog->cover_image ? route('blog.media.show', ['path' => $blog->cover_image]) : asset('favicon-star.svg');
+    $shareImage = $blog->cover_image_url ?: asset('favicon-star.svg');
 @endphp
 <link rel="canonical" href="{{ route('blog.public.show', $blog) }}">
 <meta name="description" content="{{ $shareDescription }}">
@@ -100,8 +100,8 @@
 
 @php
     $carouselImages = collect();
-    if ($blog->cover_image) {
-        $carouselImages->push($blog->cover_image);
+    if ($blog->cover_image_url) {
+        $carouselImages->push($blog->cover_image_url);
     }
     foreach ($blog->images as $image) {
         $carouselImages->push($image->image_path);
@@ -145,7 +145,7 @@
                 <div class="carousel-inner rounded shadow-sm overflow-hidden">
                     @foreach($carouselImages as $index => $path)
                         <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                            <img src="{{ route('blog.media.show', ['path' => $path]) }}"
+                            <img src="{{ Str::startsWith($path, ['http://', 'https://', '/']) ? $path : route('blog.media.show', ['path' => $path]) }}"
                                  class="d-block w-100 blog-hero-image"
                                  alt="{{ $blog->title }}"
                                  width="1600"
@@ -313,7 +313,7 @@
                     <ul class="list-unstyled mb-0">
                         @forelse($latestBlogs ?? [] as $latestBlog)
                             @php
-                                $latestCover = $latestBlog->cover_image ? route('blog.media.show', ['path' => $latestBlog->cover_image]) : null;
+                                $latestCover = $latestBlog->cover_image_url;
                             @endphp
                             <li class="d-flex gap-3 mb-3">
                                 @if($latestCover)
@@ -599,4 +599,3 @@
     }());
 </script>
 @endsection
-

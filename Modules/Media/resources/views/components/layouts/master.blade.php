@@ -12,6 +12,7 @@
         <meta name="description" content="{{ $description ?? '' }}">
         <meta name="keywords" content="{{ $keywords ?? '' }}">
         <meta name="author" content="{{ $author ?? '' }}">
+        @include('partials.google-adsense')
         <link rel="icon" type="image/svg+xml" href="{{ asset('favicon-star.svg') }}">
         <link rel="shortcut icon" href="{{ asset('favicon-star.svg') }}">
 

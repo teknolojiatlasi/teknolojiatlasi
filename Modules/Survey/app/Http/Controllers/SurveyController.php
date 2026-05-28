@@ -4,6 +4,7 @@ namespace Modules\Survey\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Modules\Survey\Models\Survey;
@@ -63,6 +64,7 @@ class SurveyController extends Controller
 
             return $survey;
         });
+        $this->clearPublicCache($survey);
 
         return response()->json([
             'message' => 'Anket oluşturuldu',
@@ -89,6 +91,7 @@ class SurveyController extends Controller
 
             return $survey->fresh(['questions.options']);
         });
+        $this->clearPublicCache($survey);
 
         return response()->json([
             'message' => 'Anket güncellendi',
@@ -98,6 +101,7 @@ class SurveyController extends Controller
 
     public function destroy(Survey $survey)
     {
+        $this->clearPublicCache($survey);
         $survey->delete();
 
         return response()->json([
@@ -235,6 +239,18 @@ class SurveyController extends Controller
             $question->options()->whereNotIn('id', $optionIds)->delete();
         } else {
             $question->options()->delete();
+        }
+    }
+
+    protected function clearPublicCache(?Survey $survey = null): void
+    {
+        Cache::forget('public.home.active-survey.v1');
+        Cache::forget('public.surveys.active.v1');
+        Cache::forget('public.surveys.index.v1');
+
+        if ($survey) {
+            Cache::forget("public.surveys.show.{$survey->id}.v1");
+            Cache::forget("public.surveys.results.{$survey->id}.v1");
         }
     }
 }
