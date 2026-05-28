@@ -60,4 +60,13 @@ class Simulation extends Model
     {
         return $query->where('status', 'published');
     }
+
+    public function getCoverImageUrlAttribute(): ?string
+    {
+        if (! $this->cover_image) {
+            return null;
+        }
+
+        return route('simulation.media.show', ['path' => ltrim($this->cover_image, '/')]);
+    }
 }

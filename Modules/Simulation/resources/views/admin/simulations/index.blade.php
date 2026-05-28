@@ -39,7 +39,7 @@
                                 <td>
                                     @if ($simulation->cover_image)
                                         <img
-                                            src="{{ asset('storage/'.$simulation->cover_image) }}"
+                                            src="{{ $simulation->cover_image_url }}"
                                             alt="{{ $simulation->title }}"
                                             class="img-thumbnail"
                                             style="width: 72px; height: 48px; object-fit: cover;"

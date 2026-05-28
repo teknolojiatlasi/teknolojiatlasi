@@ -112,7 +112,7 @@
                         <a href="{{ route('simulation.show', $simulation->slug) }}" class="simulation-card">
                             @if ($simulation->cover_image)
                                 <img
-                                    src="{{ asset('storage/'.$simulation->cover_image) }}"
+                                    src="{{ $simulation->cover_image_url }}"
                                     alt="{{ $simulation->title }}"
                                     class="simulation-cover"
                                     width="1200"

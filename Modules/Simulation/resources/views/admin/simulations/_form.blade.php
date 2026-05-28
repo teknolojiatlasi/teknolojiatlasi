@@ -237,7 +237,7 @@
 
                 @if ($simulation->cover_image)
                     <div class="mb-0">
-                        <img src="{{ asset('storage/'.$simulation->cover_image) }}" alt="{{ $simulation->title }}" class="img-fluid rounded border">
+                        <img src="{{ $simulation->cover_image_url }}" alt="{{ $simulation->title }}" class="img-fluid rounded border">
                     </div>
                 @endif
             </div>
