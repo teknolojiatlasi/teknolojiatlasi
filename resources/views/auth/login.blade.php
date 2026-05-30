@@ -261,19 +261,19 @@
                                     <div class="auth-social-grid">
                                         @if (config('services.google.client_id'))
                                             <a href="{{ route('social.redirect', ['provider' => 'google', 'redirect' => $redirectTarget]) }}" class="auth-social-btn">
-                                                <span class="auth-social-icon auth-social-google"><i class="fa fa-google"></i></span>
+                                                <span class="auth-social-icon auth-social-google"><i class="fab fa-google"></i></span>
                                                 <span>Google ile Giris</span>
                                             </a>
                                         @endif
                                         @if (config('services.github.client_id'))
                                             <a href="{{ route('social.redirect', ['provider' => 'github', 'redirect' => $redirectTarget]) }}" class="auth-social-btn">
-                                                <span class="auth-social-icon auth-social-github"><i class="fa fa-github"></i></span>
+                                                <span class="auth-social-icon auth-social-github"><i class="fab fa-github"></i></span>
                                                 <span>GitHub ile Giris</span>
                                             </a>
                                         @endif
                                         @if (config('services.facebook.client_id'))
                                             <a href="{{ route('social.redirect', ['provider' => 'facebook', 'redirect' => $redirectTarget]) }}" class="auth-social-btn">
-                                                <span class="auth-social-icon auth-social-facebook"><i class="fa fa-facebook"></i></span>
+                                                <span class="auth-social-icon auth-social-facebook"><i class="fab fa-facebook-f"></i></span>
                                                 <span>Facebook ile Uye Ol</span>
                                             </a>
                                         @endif

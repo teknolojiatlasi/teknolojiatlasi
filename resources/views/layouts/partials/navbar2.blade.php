@@ -22,11 +22,11 @@
     };
 
     $socialNavLinks = [
-        ['label' => 'Tüm Memur İlanları', 'icon' => 'fa fa-globe', 'url' => 'https://teknolojiatlasi.com.tr'],
-        ['label' => 'Instagram', 'icon' => 'fab fa-instagram', 'url' => 'https://instagram.com/teknolojiatlasi'],
-        ['label' => 'Sınava Hazırlık', 'icon' => 'fab fa-youtube', 'url' => 'https://youtube.com/channel/UC2GYfggaXT0uNuxfvU690KA/videos'],
-        ['label' => 'Telegram', 'icon' => 'fab fa-telegram', 'url' => 'https://t.me/teknolojiatlasi'],
-        ['label' => 'Twitter', 'icon' => 'fab fa-twitter', 'url' => 'https://twitter.com/teknolojiatlasi'],
+        ['label' => 'Facebook', 'icon' => 'fab fa-facebook-f', 'url' => 'https://www.facebook.com/profile.php?id=61572276071576'],
+        ['label' => 'X', 'icon' => 'fab fa-twitter', 'url' => 'https://x.com/teknolojiatlasi'],
+        ['label' => 'TikTok', 'icon' => 'fab fa-tiktok', 'url' => 'https://www.tiktok.com/@teknolojiatlasi'],
+        ['label' => 'Instagram', 'icon' => 'fab fa-instagram', 'url' => 'https://www.instagram.com/teknoloji_atlasi/'],
+        ['label' => 'LinkedIn', 'icon' => 'fab fa-linkedin-in', 'url' => 'https://www.linkedin.com/in/tekonoloji-atlas%C4%B1-b92015309/'],
     ];
 
     $contextTitle = null;
@@ -51,7 +51,7 @@
             ['label' => 'Tum Simulasyonlar', 'icon' => 'fa-list', 'url' => route('simulation.index'), 'active' => request()->routeIs('simulation.index')],
         ];
     } elseif (request()->routeIs('blog.public.*')) {
-        $contextTitle = 'İlan';
+        $contextTitle = 'Yazılar';
         $contextIcon = 'fa-pencil';
         $contextLinks = [
             ['label' => 'Ana Sayfa', 'icon' => 'fa-home', 'url' => route('anasayfa'), 'active' => false],
@@ -133,7 +133,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('blog.public.*') ? 'active' : '' }}" href="{{ route('blog.public.index') }}">
-                        <i class="fa fa-pencil me-1"></i> İlan
+                        <i class="fa fa-pencil me-1"></i> Yazılar
                     </a>
                 </li>
                 <li class="nav-item">

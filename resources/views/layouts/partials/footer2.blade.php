@@ -11,11 +11,11 @@
             <div class="col-6 col-md-4">
                 <h6 class="footer-title"><i class="fa fa-link"></i> Hızlı Bağlantılar</h6>
                 <ul class="footer-links">
-                    <li><a href="https://teknolojiatlasi.com.tr" target="_blank" rel="noopener"><i class="fa fa-angle-right"></i> Tüm Memur İlanları</a></li>
-                    <li><a href="https://instagram.com/teknolojiatlasi" target="_blank" rel="noopener"><i class="fa fa-angle-right"></i> Instagram</a></li>
-                    <li><a href="https://youtube.com/channel/UC2GYfggaXT0uNuxfvU690KA/videos" target="_blank" rel="noopener"><i class="fa fa-angle-right"></i> Sınava Hazırlık</a></li>
-                    <li><a href="https://t.me/teknolojiatlasi" target="_blank" rel="noopener"><i class="fa fa-angle-right"></i> Telegram</a></li>
-                    <li><a href="https://twitter.com/teknolojiatlasi" target="_blank" rel="noopener"><i class="fa fa-angle-right"></i> Twitter</a></li>
+                    <li><a href="https://www.facebook.com/profile.php?id=61572276071576" target="_blank" rel="noopener"><i class="fa fa-angle-right"></i> Facebook</a></li>
+                    <li><a href="https://x.com/teknolojiatlasi" target="_blank" rel="noopener"><i class="fa fa-angle-right"></i> X</a></li>
+                    <li><a href="https://www.tiktok.com/@teknolojiatlasi" target="_blank" rel="noopener"><i class="fa fa-angle-right"></i> TikTok</a></li>
+                    <li><a href="https://www.instagram.com/teknoloji_atlasi/" target="_blank" rel="noopener"><i class="fa fa-angle-right"></i> Instagram</a></li>
+                    <li><a href="https://www.linkedin.com/in/tekonoloji-atlas%C4%B1-b92015309/" target="_blank" rel="noopener"><i class="fa fa-angle-right"></i> LinkedIn</a></li>
                 </ul>
             </div>
 
@@ -26,11 +26,11 @@
                     <li><i class="fa fa-map-marker"></i> Türkiye</li>
                 </ul>
                 <div class="footer-social mt-3">
-                    <a href="https://teknolojiatlasi.com.tr" target="_blank" rel="noopener" aria-label="Tüm Memur İlanları"><i class="fa fa-globe"></i></a>
-                    <a href="https://instagram.com/teknolojiatlasi" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://youtube.com/channel/UC2GYfggaXT0uNuxfvU690KA/videos" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    <a href="https://t.me/teknolojiatlasi" target="_blank" rel="noopener" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-                    <a href="https://twitter.com/teknolojiatlasi" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61572276071576" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/teknolojiatlasi" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.tiktok.com/@teknolojiatlasi" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/teknoloji_atlasi/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/tekonoloji-atlas%C4%B1-b92015309/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>

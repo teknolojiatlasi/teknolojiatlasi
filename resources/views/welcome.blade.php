@@ -831,9 +831,9 @@
                                         </button>
                                     </div>
                                     <div class="survey-share-links">
-                                        <a href="https://wa.me/?text={{ rawurlencode('Bu ankete katıl: '.$activeSurvey->title.' '.route('survey.public.show', $activeSurvey)) }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-whatsapp"></i>WhatsApp</a>
-                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ rawurlencode(route('survey.public.show', $activeSurvey)) }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-facebook"></i>Facebook</a>
-                                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ rawurlencode(route('survey.public.show', $activeSurvey)) }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-linkedin"></i>LinkedIn</a>
+                                        <a href="https://wa.me/?text={{ rawurlencode('Bu ankete katıl: '.$activeSurvey->title.' '.route('survey.public.show', $activeSurvey)) }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i>WhatsApp</a>
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ rawurlencode(route('survey.public.show', $activeSurvey)) }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i>Facebook</a>
+                                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ rawurlencode(route('survey.public.show', $activeSurvey)) }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i>LinkedIn</a>
 
                                     </div>
                                     <div class="survey-share-feedback d-none" data-share-feedback></div>
