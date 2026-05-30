@@ -88,6 +88,11 @@
         margin-bottom: 1rem;
     }
 
+    .exam-question-text img {
+        max-width: 100%;
+        height: auto;
+    }
+
     .exam-question-media {
         margin-bottom: 1rem;
         border-radius: 1.2rem;
@@ -373,7 +378,7 @@
                         <img src="{{ $question->image_url }}" alt="Soru gorseli {{ $index + 1 }}">
                     </div>
                 @endif
-                <div class="exam-question-text">{{ $question->question_text }}</div>
+                <div class="exam-question-text">{!! $question->question_text !!}</div>
 
                 <div class="row g-3">
                     @foreach ($question->options() as $key => $text)

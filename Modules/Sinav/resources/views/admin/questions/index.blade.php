@@ -2,6 +2,29 @@
 
 @section('title', 'Sınav - Sorular')
 
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jodit@latest/es2021/jodit.min.css">
+    <style>
+        .question-editor-wrap .jodit-container {
+            border: 1px solid #dbe3ee !important;
+            border-radius: 12px !important;
+            overflow: hidden;
+        }
+        .question-editor-wrap .jodit-container .jodit-toolbar__box:not(:empty) {
+            border-bottom: 1px solid #dbe3ee !important;
+            background: #f8fafc;
+        }
+        .question-editor-wrap .jodit-container .jodit-workplace {
+            min-height: 280px;
+        }
+        .question-editor-wrap .jodit-container .jodit-wysiwyg,
+        .question-editor-wrap .jodit-container .jodit-source {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+    </style>
+@endpush
+
 @section('content')
     <div class="x_panel">
         <div class="x_title d-flex justify-content-between align-items-center">
@@ -82,7 +105,9 @@
                             </div>
                             <div class="col-12">
                                 <label class="form-label">Soru Metni</label>
-                                <textarea class="form-control" rows="3" name="question_text" id="questionText" required></textarea>
+                                <div class="question-editor-wrap">
+                                    <textarea class="form-control" rows="3" name="question_text" id="questionText" required></textarea>
+                                </div>
                                 <div class="text-danger small" data-error="question_text"></div>
                             </div>
                             <div class="col-md-6">
@@ -151,6 +176,7 @@
 @endsection
 
 @push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/jodit@latest/es2021/jodit.min.js"></script>
     <script>
         (function () {
             function modalApi(el) {
@@ -214,6 +240,91 @@
             const removeImageEl = document.getElementById('questionRemoveImage');
 
             const csrf = document.querySelector('meta[name="csrf-token"]').content;
+            const questionEditor = Jodit.make('#questionText', {
+                height: 280,
+                minHeight: 280,
+                askBeforePasteHTML: false,
+                askBeforePasteFromWord: false,
+                defaultActionOnPaste: 'insert_as_html',
+                buttons: [
+                    'source', '|',
+                    'bold', 'italic', 'underline', 'strikethrough', '|',
+                    'brush', 'paragraph', 'fontsize', '|',
+                    'ul', 'ol', 'outdent', 'indent', '|',
+                    'align', 'superscript', 'subscript', '|',
+                    'table', 'link', 'image', 'video', '|',
+                    'undo', 'redo', '|',
+                    'hr', 'eraser', 'fullsize'
+                ],
+                uploader: {
+                    insertImageAsBase64URI: false,
+                    imagesExtensions: ['jpg', 'png', 'jpeg', 'gif', 'webp'],
+                    customUploadFunction: async function (requestData, showProgress) {
+                        const formData = new FormData();
+                        const uploadedFiles = requestData instanceof FormData
+                            ? requestData.getAll('files[0]').concat(requestData.getAll('files[]'))
+                            : [];
+                        const file = uploadedFiles.find(Boolean);
+
+                        if (!file) {
+                            throw new Error('Resim secilmedi.');
+                        }
+
+                        formData.append('upload', file);
+
+                        const response = await fetch("{{ route('blog.ckeditor.upload') }}", {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': csrf,
+                                'X-Requested-With': 'XMLHttpRequest',
+                                Accept: 'application/json'
+                            },
+                            body: formData,
+                            credentials: 'same-origin'
+                        });
+
+                        showProgress(100);
+
+                        const data = await response.json().catch(() => ({}));
+
+                        if (!response.ok) {
+                            throw new Error(data?.error?.message || data?.message || 'Resim yuklenemedi.');
+                        }
+
+                        return data;
+                    },
+                    isSuccess: function (resp) {
+                        return !!resp?.url;
+                    },
+                    getMessage: function (resp) {
+                        return resp?.message || '';
+                    },
+                    process: function (resp) {
+                        return {
+                            files: resp?.url ? [resp.url] : [],
+                            path: '',
+                            baseurl: '',
+                            error: resp?.url ? 0 : 1,
+                            msg: resp?.message || ''
+                        };
+                    },
+                    defaultHandlerSuccess: function (data) {
+                        if (data.files && data.files.length) {
+                            data.files.forEach((fileUrl) => {
+                                this.s.insertImage(fileUrl);
+                            });
+                        }
+                    },
+                    defaultHandlerError: function (error) {
+                        this.j.message.error(error?.message || error || 'Resim yuklenemedi.');
+                    }
+                },
+                events: {
+                    change: function (newValue) {
+                        document.getElementById('questionText').value = newValue;
+                    }
+                }
+            });
 
             questionModalEl.querySelectorAll('[data-bs-dismiss="modal"]').forEach((button) => {
                 button.addEventListener('click', (event) => {
@@ -246,7 +357,7 @@
                 document.getElementById('questionId').value = row.dataset.id;
                 imageInputEl.value = '';
                 syncImagePreview(row.dataset.imageUrl || '');
-                document.getElementById('questionText').value = row.dataset.questionText || '';
+                questionEditor.value = row.dataset.questionText || '';
                 document.getElementById('optionA').value = row.dataset.optionA || '';
                 document.getElementById('optionB').value = row.dataset.optionB || '';
                 document.getElementById('optionC').value = row.dataset.optionC || '';
@@ -265,6 +376,7 @@
                 document.getElementById('questionId').value = '';
                 imageInputEl.value = '';
                 syncImagePreview('');
+                questionEditor.value = '';
                 document.getElementById('questionSortOrder').value = '0';
                 document.getElementById('questionActive').checked = true;
                 modal.show();
@@ -339,6 +451,7 @@
                 clearErrors();
 
                 const payload = new FormData(formEl);
+                payload.set('question_text', questionEditor.value);
                 payload.set('is_active', document.getElementById('questionActive').checked ? '1' : '0');
 
                 const id = document.getElementById('questionId').value;

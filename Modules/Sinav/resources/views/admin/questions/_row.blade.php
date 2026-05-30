@@ -19,7 +19,7 @@
                 <img src="{{ $question->image_url }}" alt="Soru gorseli" style="max-width: 140px; max-height: 90px; border-radius: 8px; object-fit: cover;">
             </div>
         @endif
-        <div class="fw-semibold">{{ \Illuminate\Support\Str::limit($question->question_text, 120) }}</div>
+        <div class="fw-semibold">{{ \Illuminate\Support\Str::limit(strip_tags($question->question_text), 120) }}</div>
         <div class="text-muted small">A: {{ \Illuminate\Support\Str::limit($question->option_a, 60) }}</div>
     </td>
     <td class="text-center"><span class="badge bg-dark">{{ $question->correct_option }}</span></td>

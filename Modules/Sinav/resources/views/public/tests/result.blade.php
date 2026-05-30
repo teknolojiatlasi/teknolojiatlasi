@@ -175,6 +175,11 @@
         object-fit: contain;
         background: #fff;
     }
+
+    .exam-result-shell .question-text img {
+        max-width: 100%;
+        height: auto;
+    }
 </style>
 @endpush
 
@@ -272,7 +277,7 @@
                                             <img src="{{ $q->image_url }}" alt="Soru gorseli {{ $index + 1 }}">
                                         </div>
                                     @endif
-                                    <div class="fw-semibold fs-5">{{ $q->question_text }}</div>
+                                    <div class="question-text fw-semibold fs-5">{!! $q->question_text !!}</div>
                                 </div>
                                 <span class="answer-pill {{ $pillClass }}">
                                     <i class="fa {{ $pillClass === 'ok' ? 'fa-check' : ($pillClass === 'bad' ? 'fa-times' : 'fa-minus') }}"></i>
