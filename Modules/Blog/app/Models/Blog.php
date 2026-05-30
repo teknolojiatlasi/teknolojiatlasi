@@ -78,11 +78,11 @@ class Blog extends Model
     public function getCoverImageUrlAttribute(): ?string
     {
         if ($this->coverMedia) {
-            return $this->coverMedia->url;
+            return self::blogMediaUrl($this->coverMedia->file_path) ?? $this->coverMedia->url;
         }
 
         if ($this->cover_image) {
-            return route('blog.media.show', ['path' => $this->cover_image]);
+            return self::blogMediaUrl($this->cover_image);
         }
 
         return null;
@@ -104,7 +104,7 @@ class Blog extends Model
         }
 
         return preg_replace_callback(
-            '#(?:(?:https?:)?//(?:www\.)?teknolojiatlasi\.com\.tr)?/storage/(blogs/(?:covers|images|editor)/[^"\'>\s?]+)#i',
+            '#(?:(?:https?:)?//(?:www\.)?teknolojiatlasi\.com\.tr)?/storage/((?:blogs/(?:covers|images|editor)|uploads/covers)/[^"\'>\s?]+)#i',
             static function (array $matches): string {
                 $path = ltrim((string) ($matches[1] ?? ''), '/');
 
@@ -112,5 +112,20 @@ class Blog extends Model
             },
             $content
         ) ?? $content;
+    }
+
+    protected static function blogMediaUrl(?string $path): ?string
+    {
+        $path = ltrim((string) $path, '/');
+
+        if ($path === '') {
+            return null;
+        }
+
+        if (! str_starts_with($path, 'blogs/') && ! str_starts_with($path, 'uploads/covers/')) {
+            return null;
+        }
+
+        return route('blog.media.show', ['path' => $path]);
     }
 }
