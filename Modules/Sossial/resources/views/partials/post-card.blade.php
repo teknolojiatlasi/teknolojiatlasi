@@ -14,7 +14,7 @@
         'interview' => 'Mülakat Deneyimi',
         'advice' => 'Kariyer Tavsiyesi',
         'company' => 'Şirket Deneyimi',
-        'ilan' => 'İlan Paylaşımı',
+        'ilan' => 'Yazı Paylaşımı',
     ];
     $postTypeLabel = $postTypeLabels[$post->type] ?? ucfirst((string) $post->type);
     $isOwner = auth()->check() && auth()->user()?->is($post->user);
@@ -131,7 +131,7 @@
                 @if ($post->link_url)
                     <div class="mt-3">
                         <a href="{{ $post->link_url }}" target="_blank" rel="noopener" class="btn btn-primary rounded-pill px-4">
-                            İlan Detay Linki
+                            Yazı detay linki
                         </a>
                     </div>
                 @endif

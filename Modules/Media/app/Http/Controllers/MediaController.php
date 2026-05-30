@@ -96,7 +96,7 @@ class MediaController extends Controller
         if (Blog::query()->where('cover_media_id', $medium->id)->exists()) {
             return redirect()
                 ->route('media.index')
-                ->withErrors(['media' => 'Bu resim bir ilanda kapak resmi olarak kullaniliyor. Once ilandaki kapak resmini degistirin.']);
+                ->withErrors(['media' => 'Bu resim bir yazida kapak resmi olarak kullaniliyor. Once yazidaki kapak resmini degistirin.']);
         }
 
         Storage::disk('public')->delete($medium->file_path);

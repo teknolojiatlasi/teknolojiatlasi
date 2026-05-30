@@ -61,7 +61,7 @@
                 @endif
             @empty
                 <div class="col-12">
-                    <div class="alert alert-info mb-0">Henüz ilan yok.</div>
+                    <div class="alert alert-info mb-0">Henüz yazı yok.</div>
                 </div>
             @endforelse
         </div>

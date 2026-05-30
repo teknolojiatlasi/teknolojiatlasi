@@ -381,7 +381,7 @@ class BlogController extends Controller
         $data = $blogs->map(function (Blog $blog): array {
             $actions = sprintf(
                 '<a href="%s" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i> Duzenle</a>
-                <form action="%s" method="POST" class="d-inline" onsubmit="return confirm(\'Bu ilani silmek istiyor musunuz?\');">%s%s<button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-trash"></i> Sil</button></form>',
+                <form action="%s" method="POST" class="d-inline" onsubmit="return confirm(\'Bu yaziyi silmek istiyor musunuz?\');">%s%s<button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-trash"></i> Sil</button></form>',
                 e(route('blog.edit', $blog)),
                 e(route('blog.destroy', $blog)),
                 csrf_field(),

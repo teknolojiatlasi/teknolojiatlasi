@@ -5,7 +5,7 @@
         'interview' => 'Mülakat Deneyimi',
         'advice' => 'Kariyer Tavsiyesi',
         'company' => 'Şirket Deneyimi',
-        'ilan' => 'İlan Paylaşımı',
+        'ilan' => 'Yazı Paylaşımı',
     ];
 @endphp
 
@@ -16,7 +16,7 @@
                 <span class="sosial-kicker"><i class="fa fa-commenting-o"></i> Paylaşım Detayı</span>
                 <h1 class="sosial-hero-title">{{ $post->blog?->title ?? 'Tek paylaşım, tam etkileşim görünümü.' }}</h1>
                 <p class="sosial-hero-copy">
-                    {{ $post->type === 'ilan' ? 'İlan kapak görseli, başlık ve detay bağlantısı sosyal akış içinde paylaşılıyor.' : 'İçeriği, yorumları ve kullanıcı bağlantılarını tek ekranda yönet.' }}
+                    {{ $post->type === 'ilan' ? 'Yazı kapak görseli, başlık ve detay bağlantısı sosyal akış içinde paylaşılıyor.' : 'İçeriği, yorumları ve kullanıcı bağlantılarını tek ekranda yönet.' }}
                 </p>
             </div>
             <div class="col-12 col-lg-4">
@@ -119,7 +119,7 @@
                     <div>
                         <div class="text-muted small mb-1">Bağlantı</div>
                         @if ($post->link_url)
-                            <a class="btn sosial-btn-ghost w-100" href="{{ $post->link_url }}" target="_blank" rel="noopener">İlan detayına git</a>
+                            <a class="btn sosial-btn-ghost w-100" href="{{ $post->link_url }}" target="_blank" rel="noopener">Yazı detayına git</a>
                         @else
                             <span class="text-muted small">Bağlantı yok.</span>
                         @endif

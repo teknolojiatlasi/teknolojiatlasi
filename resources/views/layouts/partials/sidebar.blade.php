@@ -29,13 +29,13 @@
           </li>
 
           <li>
-            <a><i class="fas fa-home"></i> İlan <span class="fas fa-chevron-down"></span></a>
+            <a><i class="fas fa-home"></i> Yazılar <span class="fas fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="{{ route('blog.index') }}">İlan listesi</a></li>
-              <li><a href="{{ route('blog.create') }}">Yeni ilan</a></li>
+              <li><a href="{{ route('blog.index') }}">Yazı listesi</a></li>
+              <li><a href="{{ route('blog.create') }}">Yeni yazı</a></li>
               <li><a href="{{ route('blog.categories.index') }}">Kategoriler</a></li>
-              <li><a href="{{ route('blog.comments.index') }}">İlan Yorumları</a></li>
-              <li><a href="{{ route('blog.public.index') }}">İlanları Oku</a></li>
+              <li><a href="{{ route('blog.comments.index') }}">Yazı yorumları</a></li>
+              <li><a href="{{ route('blog.public.index') }}">Yazıları oku</a></li>
             </ul>
           </li>
 

@@ -45,7 +45,7 @@
                     <thead>
                         <tr>
                             <th style="width: 70px;">ID</th>
-                            <th>Ilan</th>
+                            <th>Yazi</th>
                             <th style="width: 180px;">Yazar</th>
                             <th>Yorum</th>
                             <th style="width: 90px;">Tur</th>

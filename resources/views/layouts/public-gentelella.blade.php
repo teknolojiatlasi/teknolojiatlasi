@@ -72,8 +72,8 @@
         }
 
         .mn-topbar .mn-brand {
-            font-weight: 700;
-            letter-spacing: .2px;
+            display: inline-flex;
+            align-items: center;
         }
 
         .mn-topbar .mn-link {
@@ -110,11 +110,13 @@
             <div class="mn-topbar">
                 <div class="mn-page" style="display:flex;align-items:center;gap:16px;justify-content:space-between;">
                     <div style="display:flex;align-items:center;gap:16px;">
-                        <a class="mn-brand" href="{{ url('/') }}">memurlar.net</a>
+                        <a class="mn-brand" href="{{ url('/') }}">
+                            <img src="{{ asset('teknoloji-atlasi-logo.svg') }}" alt="Teknoloji Atlası" width="245" height="72" style="height:42px;width:auto;">
+                        </a>
                         <nav style="display:flex;gap:12px;flex-wrap:wrap;">
                             <a class="mn-link" href="#">Haber</a>
                             <a class="mn-link" href="#">Forum</a>
-                            <a class="mn-link" href="{{ url('/ilansayfasi') }}">İlan</a>
+                            <a class="mn-link" href="{{ route('blog.public.index') }}">Yazılar</a>
                             <a class="mn-link" href="#">KPSS</a>
                             <a class="mn-link" href="#">Sınav</a>
                             <a class="mn-link" href="#">Bi Mola</a>

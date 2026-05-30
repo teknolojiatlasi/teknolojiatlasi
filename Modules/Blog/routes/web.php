@@ -9,9 +9,11 @@ use Modules\Blog\Http\Controllers\BlogCommentController;
 use Modules\Blog\Http\Controllers\BlogController;
 use Modules\Blog\Http\Controllers\BlogMediaController;
 
-Route::get('/is-ilani', [BlogController::class, 'publicIndex'])->name('blog.public.index');
+Route::redirect('/is-ilani', '/yazilar', 301);
+Route::redirect('/is-ilani/{blog}', '/yazilar/{blog}', 301);
 
-Route::get('/is-ilani/{blog}', [BlogController::class, 'publicShow'])->name('blog.public.show');
+Route::get('/yazilar', [BlogController::class, 'publicIndex'])->name('blog.public.index');
+Route::get('/yazilar/{blog}', [BlogController::class, 'publicShow'])->name('blog.public.show');
 Route::get('/blog/{blog}', [BlogController::class, 'publicShow'])->name('blog.public.legacy-show');
 
 Route::get('/blog-media/{path}', [BlogMediaController::class, 'show'])

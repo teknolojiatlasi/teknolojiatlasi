@@ -85,14 +85,14 @@
 {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
 
     <div class="container">
-        <a class="navbar-brand fw-bold" href="{{ route('anasayfa') }}">İlan</a>
+        <a class="navbar-brand fw-bold" href="{{ route('anasayfa') }}">Yazılar</a>
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navMenu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="{{ route('anasayfa') }}">Ana Sayfa</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('blog.public.index') }}">İlan</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('blog.public.index') }}">Yazılar</a></li>
             </ul>
         </div>
     </div>
@@ -176,7 +176,7 @@
                 </div>
                 <div class="d-flex flex-wrap gap-2">
                     <a href="#comments" class="btn btn-sm px-3 py-2 text-white border-0 shadow-sm" style="background: linear-gradient(135deg, #2563eb, #00fdf6); border-radius: 999px; font-size: 1.3rem; line-height: 1.2;">Yorumları gör</a>
-                    <a href="{{ route('blog.public.index') }}" class="btn btn-sm px-3 py-2 text-dark shadow-sm" style="background: linear-gradient(135deg, #fef3c7, #fde68a); border: 1px solid #f59e0b; border-radius: 999px; font-size: 1.3rem; line-height: 1.2;">Tüm ilanlar</a>
+                    <a href="{{ route('blog.public.index') }}" class="btn btn-sm px-3 py-2 text-dark shadow-sm" style="background: linear-gradient(135deg, #fef3c7, #fde68a); border: 1px solid #f59e0b; border-radius: 999px; font-size: 1.3rem; line-height: 1.2;">Tüm yazılar</a>
                 </div>
             </div>
 
@@ -309,7 +309,7 @@
                 ])
 
                 <div class="bg-white rounded shadow-sm p-4">
-                    <h2 class="h5 fw-bold mb-3">Son İlanlar</h2>
+                    <h2 class="h5 fw-bold mb-3">Son Yazılar</h2>
                     <ul class="list-unstyled mb-0">
                         @forelse($latestBlogs ?? [] as $latestBlog)
                             @php
@@ -327,12 +327,12 @@
                                 </div>
                             </li>
                         @empty
-                            <li class="text-muted small">Henüz gösterilecek ilan yok.</li>
+                            <li class="text-muted small">Henüz gösterilecek yazı yok.</li>
                         @endforelse
                     </ul>
                     <div class="mt-3">
                         <a href="{{ route('blog.public.index') }}" class="btn btn-sm btn-outline-primary w-100">
-                            Tüm ilanlara git
+                            Tüm yazılara git
                         </a>
                     </div>
                 </div>

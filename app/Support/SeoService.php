@@ -43,16 +43,16 @@ class SeoService
 
         switch ($routeName) {
             case 'anasayfa':
-                $data['title'] = $siteName . ' | Güncel içerikler, iş ilanları, sınavlar ve anketler';
-                $data['description'] = 'İş ilanları, blog yazıları, sınav içerikleri, anketler ve sosyal paylaşımlar tek merkezde. Hızlı açılan, arama motoru dostu içerik hub.';
+                $data['title'] = $siteName . ' | Güncel yazılar, sınavlar ve anketler';
+                $data['description'] = 'Teknoloji yazıları, blog içerikleri, sınav içerikleri, anketler ve sosyal paylaşımlar tek merkezde. Hızlı açılan, arama motoru dostu içerik hub.';
                 $data['schema'][] = $this->webPageSchema($data['canonical'], 'WebPage', $data['title'], $data['description']);
                 break;
 
             case 'blog.public.index':
                 $category = $request->query('category');
-                $prefix = $category ? 'Kategori arşivi' : 'Blog ve iş ilanı arşivi';
+                $prefix = $category ? 'Kategori arşivi' : 'Yazı arşivi';
                 $data['title'] = $siteName . ' | ' . $prefix;
-                $data['description'] = 'Yayınlanan blog yazılarını ve iş ilanlarını kategori filtreleriyle keşfedin. SEO uyumlu arşiv sayfası ile içeriklere hızlı erişin.';
+                $data['description'] = 'Yayınlanan blog yazılarını kategori filtreleriyle keşfedin. SEO uyumlu arşiv sayfası ile içeriklere hızlı erişin.';
                 $data['type'] = 'website';
                 $data['schema'][] = $this->webPageSchema($data['canonical'], 'CollectionPage', $data['title'], $data['description']);
                 break;

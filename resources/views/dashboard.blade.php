@@ -6,10 +6,10 @@
 
         $featuredModules = [
             [
-                'title' => 'İlanlar ve İçerikler',
-                'description' => 'Yayımlanan ilanları, duyuruları ve yeni içerikleri takip edin.',
+                'title' => 'Yazılar ve İçerikler',
+                'description' => 'Yayımlanan yazıları, duyuruları ve yeni içerikleri takip edin.',
                 'url' => route('blog.public.index'),
-                'cta' => 'İlanlara Git',
+                'cta' => 'Yazılara Git',
                 'badge' => 'Güncel',
                 'icon' => 'Y',
                 'gradient' => 'linear-gradient(135deg, #2563eb 0%, #06b6d4 100%)',
@@ -92,7 +92,7 @@
 
         $sidebarLinks = [
             ['label' => 'Panel', 'url' => route('dashboard')],
-            ['label' => 'İlanlar', 'url' => route('blog.public.index')],
+            ['label' => 'Yazılar', 'url' => route('blog.public.index')],
             ['label' => 'CV', 'url' => route('cv.create')],
             ['label' => 'Sosyal', 'url' => route('sosial.feed')],
             ['label' => 'Profil', 'url' => route('profile.edit')],

@@ -1,6 +1,6 @@
 @extends('app::layouts.admin')
 
-@section('title', 'Ilanlar')
+@section('title', 'Yazilar')
 
 @push('styles')
 <style>
@@ -23,7 +23,7 @@
 @endpush
 
 @section('content')
-<a href="{{ route('blog.create') }}" class="btn btn-primary mb-3"><i class="fa fa-plus-circle"></i> Yeni Ilan</a>
+<a href="{{ route('blog.create') }}" class="btn btn-primary mb-3"><i class="fa fa-plus-circle"></i> Yeni Yazi</a>
 
 @if(session('success'))
     <div class="alert alert-success" role="alert">

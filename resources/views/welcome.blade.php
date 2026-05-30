@@ -426,7 +426,7 @@
                             Güncel içerikler, sınav hazırlığı, anketler, CV araçları ve Topluluk akışı tek ana sayfada birleşiyor.
                         </p>
                         <div class="hero-actions d-flex flex-wrap gap-3 mb-4">
-                            <a href="{{ route('blog.public.index') }}" class="btn btn-warning text-dark rounded-pill">İlanları Keşfet <i class="fa fa-arrow-right ms-2"></i></a>
+                            <a href="{{ route('blog.public.index') }}" class="btn btn-warning text-dark rounded-pill">Yazıları Keşfet <i class="fa fa-arrow-right ms-2"></i></a>
                             <a href="{{ route('sinav.lessons.index') }}" class="btn btn-outline-light rounded-pill">Soru Platformu</a>
                             <a href="{{ route('cv.create') }}" class="btn btn-light rounded-pill">CV Oluştur</a>
                         </div>
@@ -589,7 +589,7 @@
                             @empty
                                 <p class="text-secondary mb-0">Henüz kategori tanımlı değil.</p>
                             @endforelse
-                            <a href="{{ route('blog.public.index') }}" class="btn btn-outline-dark rounded-pill w-100 mt-4">Tüm ilan içerikleri</a>
+                            <a href="{{ route('blog.public.index') }}" class="btn btn-outline-dark rounded-pill w-100 mt-4">Tüm yazılar</a>
                         </div>
                     </article>
                 </div>

@@ -115,9 +115,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top navbar-blur shadow-sm">
     <div class="container">
-        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{{ route('anasayfa') }}">
-            <img src="{{ asset('favicon-star.svg') }}" alt="" width="30" height="30" class="d-inline-block align-text-top">
-            <span>Teknoloji Atlası</span>
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="{{ route('anasayfa') }}">
+            <img src="{{ asset('teknoloji-atlasi-logo.svg') }}" alt="Teknoloji Atlası" width="245" height="72" class="d-inline-block align-text-top" style="height:42px;width:auto;">
         </a>
 
         <button class="navbar-toggler" type="button" aria-controls="navMenu" aria-expanded="false" aria-label="Menüyü aç veya kapat">

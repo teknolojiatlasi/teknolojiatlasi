@@ -4,7 +4,7 @@
         'interview' => 'Mülakat deneyimi',
         'advice' => 'Kariyer tavsiyesi',
         'company' => 'Şirket / pozisyon deneyimi',
-        'ilan' => 'İlan paylaşımı',
+        'ilan' => 'Yazı paylaşımı',
     ];
 @endphp
 

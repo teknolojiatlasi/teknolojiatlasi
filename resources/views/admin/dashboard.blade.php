@@ -5,14 +5,14 @@
 @php
     $dashboardCards = [
         [
-            'title' => 'İlan',
+            'title' => 'Yazılar',
             'icon' => 'fas fa-home',
-            'description' => 'İlanları görüntüle, yeni içerik ekle ve yayın akışını yönet.',
+            'description' => 'Yazıları görüntüle, yeni içerik ekle ve yayın akışını yönet.',
             'href' => route('blog.index'),
             'gradient' => 'linear-gradient(135deg, #ff7a18 0%, #ffb347 100%)',
             'links' => [
-                ['label' => 'İlan listesi', 'href' => route('blog.index')],
-                ['label' => 'Yeni ilan', 'href' => route('blog.create')],
+                ['label' => 'Yazı listesi', 'href' => route('blog.index')],
+                ['label' => 'Yeni yazı', 'href' => route('blog.create')],
             ],
         ],
         [
@@ -98,7 +98,7 @@
             'links' => [
                 ['label' => 'Sitemap.xml', 'href' => route('sitemap')],
                 ['label' => 'Ana sayfa', 'href' => route('anasayfa')],
-                ['label' => 'Ilan arsivi', 'href' => route('blog.public.index')],
+                ['label' => 'Yazi arsivi', 'href' => route('blog.public.index')],
                 ['label' => 'Anketler', 'href' => route('survey.public.index')],
                 ['label' => 'İletişim', 'href' => route('contact_public_index')],
                 ['label' => 'Sosial akis', 'href' => route('sosial.feed')],

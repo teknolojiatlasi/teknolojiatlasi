@@ -232,7 +232,7 @@ class PostController extends Controller
             'interview' => 'Mulakat deneyimi',
             'advice' => 'Kariyer tavsiyesi',
             'company' => 'Sirket / pozisyon deneyimi',
-            'ilan' => 'Ilan paylasimi',
+            'ilan' => 'Yazi paylasimi',
         ];
     }
 

@@ -3,7 +3,7 @@
         'interview' => 'Mülakat deneyimi',
         'advice' => 'Kariyer tavsiyesi',
         'company' => 'Şirket / pozisyon deneyimi',
-        'ilan' => 'İlan paylaşım',
+        'ilan' => 'Yazı paylaşımı',
     ];
 @endphp
 

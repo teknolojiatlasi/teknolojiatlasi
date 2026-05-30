@@ -7,7 +7,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>İlan Modülü - {{ config('app.name', 'Teknoloji Atlası') }}</title>
+        <title>Yazı Modülü - {{ config('app.name', 'Teknoloji Atlası') }}</title>
 
         @include('partials.google-analytics')
         @include('partials.google-adsense')

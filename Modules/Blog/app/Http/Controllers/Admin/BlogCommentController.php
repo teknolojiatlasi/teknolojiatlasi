@@ -63,7 +63,7 @@ class BlogCommentController extends Controller
             ->get();
 
         $data = $comments->map(function (BlogComment $comment): array {
-            $blogHtml = '<span class="text-muted">Silinmis ilan</span>';
+            $blogHtml = '<span class="text-muted">Silinmis yazi</span>';
 
             if ($comment->blog) {
                 $blogUrl = route('blog.public.show', $comment->blog) . '#comments';

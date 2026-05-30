@@ -25,7 +25,7 @@ Route::get('/site/haberdetay/{id}', function ($id) {
 
 
 Route::get('/ilansayfasi', function () {
-    return view('welcome');
+    return redirect()->route('blog.public.index', [], 301);
 });
 
 Route::prefix('push')->middleware('throttle:20,1')->group(function () {

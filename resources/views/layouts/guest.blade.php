@@ -25,10 +25,7 @@
                         <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.28),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(245,158,11,0.22),transparent_24%)]"></div>
                         <div class="relative z-10">
                             <a href="{{ route('anasayfa') }}" class="inline-flex items-center gap-3 text-lg font-bold tracking-tight">
-                                <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 text-white shadow-lg shadow-blue-900/30">
-                                    ★
-                                </span>
-                                <span>Teknoloji Atlası</span>
+                                <img src="{{ asset('teknoloji-atlasi-logo.svg') }}" alt="Teknoloji Atlası" width="245" height="72" class="h-12 w-auto">
                             </a>
                         </div>
 
@@ -47,10 +44,7 @@
                     <section class="px-5 py-8 sm:px-8 lg:px-10 xl:px-12 xl:py-12">
                         <div class="mb-8 flex items-center justify-between xl:hidden">
                             <a href="{{ route('anasayfa') }}" class="inline-flex items-center gap-3 text-lg font-bold tracking-tight text-slate-900">
-                                <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 text-white shadow-lg shadow-blue-900/20">
-                                    ★
-                                </span>
-                                <span>Teknoloji Atlası</span>
+                                <img src="{{ asset('teknoloji-atlasi-logo.svg') }}" alt="Teknoloji Atlası" width="245" height="72" class="h-11 w-auto">
                             </a>
                         </div>
 
