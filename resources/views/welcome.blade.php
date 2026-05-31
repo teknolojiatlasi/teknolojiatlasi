@@ -114,6 +114,69 @@
     }
     .story-card:hover { transform:translateY(-4px); box-shadow:0 18px 40px rgba(15,23,42,.12); }
     .story-card:hover .story-link { color:#0b7ed3; }
+    .games-promo-card {
+        display:grid;
+        grid-template-columns:minmax(0,1fr) auto;
+        gap:1.25rem;
+        align-items:center;
+        margin-bottom:1.35rem;
+        padding:1.15rem;
+        border-radius:.75rem;
+        background:
+            linear-gradient(135deg, rgba(14,165,233,.12), rgba(245,158,11,.12)),
+            #fff;
+        border:1px solid rgba(15,23,42,.08);
+        box-shadow:0 16px 36px rgba(15,23,42,.08);
+        text-decoration:none;
+        color:#0f172a;
+    }
+    .games-promo-card:hover {
+        color:#0f172a;
+        transform:translateY(-3px);
+        box-shadow:0 22px 48px rgba(15,23,42,.12);
+        text-decoration:none;
+    }
+    .games-promo-content {
+        display:flex;
+        gap:1rem;
+        align-items:center;
+        min-width:0;
+    }
+    .games-promo-icon {
+        display:inline-flex;
+        width:3rem;
+        height:3rem;
+        flex:0 0 3rem;
+        align-items:center;
+        justify-content:center;
+        border-radius:.75rem;
+        background:#0ea5e9;
+        color:#fff;
+        font-size:1.25rem;
+    }
+    .games-promo-card h3 {
+        margin:0 0 .25rem;
+        font-size:1.15rem;
+        font-weight:900;
+        line-height:1.2;
+    }
+    .games-promo-card p {
+        margin:0;
+        color:#64748b;
+        line-height:1.5;
+    }
+    .games-promo-action {
+        display:inline-flex;
+        gap:.45rem;
+        align-items:center;
+        justify-content:center;
+        padding:.75rem 1rem;
+        border-radius:999px;
+        background:#f59e0b;
+        color:#111827;
+        font-weight:800;
+        white-space:nowrap;
+    }
     .module-card:hover, .lesson-card:hover, .mini-story:hover { transform:translateY(-4px); box-shadow:0 24px 60px rgba(15,23,42,.14); }
     .feature-slide { position:relative; min-height:460px; border-radius:1.5rem; overflow:hidden; background-size:cover; background-position:center; }
     .feature-slide::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,23,42,.18), rgba(15,23,42,.9)); }
@@ -194,6 +257,10 @@
     }
     .module-icon { width:56px; height:56px; border-radius:1rem; display:inline-flex; align-items:center; justify-content:center; font-size:1.35rem; color:#fff; margin-bottom:1rem; }
     .module-blue { background:linear-gradient(135deg,#2563eb,#00fdf6); } .module-green { background:linear-gradient(135deg,#059669,#10b981); } .module-orange { background:linear-gradient(135deg,#d97706,#f59e0b); } .module-slate { background:linear-gradient(135deg,#334155,#0f172a); }
+    .simulation-category-card .module-title { display:block; margin-bottom:.7rem; }
+    .simulation-category-card .simulation-category-description { display:-webkit-box; min-height:4.8rem; overflow:hidden; -webkit-line-clamp:3; -webkit-box-orient:vertical; }
+    .simulation-category-tags { display:flex; flex-wrap:wrap; gap:.45rem; min-height:2rem; margin-bottom:1rem; }
+    .simulation-category-tag { display:inline-flex; align-items:center; gap:.3rem; max-width:100%; padding:.4rem .65rem; border-radius:999px; background:#eff6ff; color:#075985; font-size:.8rem; font-weight:700; line-height:1.2; }
     .survey-card .card-body-pad { padding: 1rem; }
     .survey-card .form-control, .survey-card .form-select { min-height:40px; border-radius:.8rem; border-color:rgba(148,163,184,.28); padding-top:.55rem; padding-bottom:.55rem; }
     .survey-card .form-check { padding:.6rem .85rem .6rem 2rem; border:1px solid rgba(148,163,184,.22); border-radius:.9rem; background:#fff; }
@@ -316,6 +383,12 @@
         .story-card .story-image {
             aspect-ratio: auto;
             height: 170px;
+        }
+        .games-promo-card {
+            grid-template-columns:1fr;
+        }
+        .games-promo-action {
+            width:100%;
         }
         .survey-chart-shell { padding: 1rem !important; }
         .survey-chart-wrap { max-width: 220px; }
@@ -474,6 +547,17 @@
 
 
         <section class="section-block">
+            <a href="{{ route('game.play') }}" class="games-promo-card">
+                <span class="games-promo-content">
+                    <span class="games-promo-icon"><i class="fa fa-gamepad"></i></span>
+                    <span>
+                        <h3>Oyunlar</h3>
+                        <p>Giris yapmadan oyun sec, sol menuden istedigin oyunu ac ve hemen oyna.</p>
+                    </span>
+                </span>
+                <span class="games-promo-action">Oyunlara git <i class="fa fa-arrow-right"></i></span>
+            </a>
+
             <div class="d-flex flex-column flex-lg-row align-items-lg-end justify-content-between gap-3 mb-4">
                 <div>
                     <span class="section-kicker"><i class="fa fa-sun-o"></i> Bugün öne çıkanlar</span>
@@ -706,58 +790,45 @@
         <section class="section-block">
             <div class="d-flex flex-column flex-lg-row align-items-lg-end justify-content-between gap-3 mb-4">
                 <div>
-                    <span class="section-kicker"><i class="fa fa-cubes"></i> Portal modülleri</span>
-                    <h2 class="section-title">Tüm ürün yüzlerini ana sayfada görünür hale getir.</h2>
-
+                    <span class="section-kicker"><i class="fa fa-flask"></i> Simülasyon kategorileri</span>
+                    <h2 class="section-title">Simülasyon kategorileri</h2>
                 </div>
+                <a href="{{ route('simulation.index') }}" class="btn btn-outline-dark rounded-pill px-4">Tüm simülasyonlar</a>
             </div>
 
-            <div class="row g-4">
-                <div class="col-md-6 col-xl-3">
-                    <article class="module-card glass-card h-100">
-                        <div class="card-body-pad">
-                            <span class="module-icon module-blue"><i class="fa fa-id-card"></i></span>
-                            <h3 class="module-title h5 mb-3">CV Oluşturucu</h3>
-                            <p class="text-secondary">Hazır şablonla hızlı CV oluştur, düzenle ve PDF çıktısı al.</p>
-                            <div class="small text-muted fw-semibold mb-3">Profil hazırlığı</div>
-                            <a href="{{ route('cv.create') }}" class="btn btn-outline-primary rounded-pill px-3">CV Oluştur</a>
+            @if($simulationCategories->isNotEmpty())
+                <div class="row g-4">
+                    @foreach($simulationCategories as $category)
+                        <div class="col-md-6 col-xl-3">
+                            <article class="module-card simulation-category-card glass-card h-100">
+                                <div class="card-body-pad">
+                                    <span class="module-icon module-blue">
+                                        <i class="fa {{ $category->icon ?: 'fa-flask' }}"></i>
+                                    </span>
+                                    <a href="{{ route('simulation.category', $category) }}" class="module-title h5">
+                                        {{ $category->name }}
+                                    </a>
+                                    <p class="text-secondary simulation-category-description">
+                                        {{ $category->description ?: 'Bu kategori altındaki etkileşimli simülasyonları keşfedin.' }}
+                                    </p>
+                                    <div class="simulation-category-tags">
+                                        @forelse($category->children->take(3) as $child)
+                                            <span class="simulation-category-tag">{{ $child->name }}</span>
+                                        @empty
+                                            <span class="simulation-category-tag">{{ $category->simulations_count }} simülasyon</span>
+                                        @endforelse
+                                    </div>
+                                    <a href="{{ route('simulation.category', $category) }}" class="btn btn-outline-primary rounded-pill px-3">
+                                        Kategoriyi Aç
+                                    </a>
+                                </div>
+                            </article>
                         </div>
-                    </article>
+                    @endforeach
                 </div>
-                <div class="col-md-6 col-xl-3">
-                    <article class="module-card glass-card h-100">
-                        <div class="card-body-pad">
-                            <span class="module-icon module-green"><i class="fa fa-question-circle"></i></span>
-                            <h3 class="module-title h5 mb-3">Soru Platformu</h3>
-                            <p class="text-secondary">Ders bazlı konu akışları ve testlerle hazırlığını düzenli ilerlet.</p>
-                            <div class="small text-muted fw-semibold mb-3">{{ $lessons->count() }} aktif ders alanı</div>
-                            <a href="{{ route('sinav.lessons.index') }}" class="btn btn-outline-success rounded-pill px-3">Çözmeye Başla</a>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-md-6 col-xl-3">
-                    <article class="module-card glass-card h-100">
-                        <div class="card-body-pad">
-                            <span class="module-icon module-orange"><i class="fa fa-users"></i></span>
-                            <h3 class="module-title h5 mb-3">Topluluk</h3>
-                            <p class="text-secondary">Deneyim paylaş, keşfet ve mülakat odaklı topluluk akışına bağlan.</p>
-                            <div class="small text-muted fw-semibold mb-3">Topluluk görünürlüğü</div>
-                            <a href="{{ route('sosial.feed') }}" class="btn btn-outline-warning rounded-pill px-3">Akışa Git</a>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-md-6 col-xl-3">
-                    <article class="module-card glass-card h-100">
-                        <div class="card-body-pad">
-                            <span class="module-icon module-slate"><i class="fa fa-envelope"></i></span>
-                            <h3 class="module-title h5 mb-3">İletişim</h3>
-                            <p class="text-secondary">Görüş, destek ya da iş birliği için doğrudan iletişim kanalına geç.</p>
-                            <div class="small text-muted fw-semibold mb-3">Hızlı geri dönüş alanı</div>
-                            <a href="{{ route('contact_public_index') }}" class="btn btn-outline-dark rounded-pill px-3">Mesaj Gönder</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
+            @else
+                <div class="empty-state">Simülasyon kategorileri yayınlandığında bu alanda listelenecek.</div>
+            @endif
         </section>
 
         @include('partials.adsense.ad-unit', [

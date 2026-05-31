@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use Modules\Blog\Models\Blog;
 use Modules\Blog\Models\BlogCategory;
 use Modules\Sinav\Models\Lesson;
+use Modules\Simulation\Models\SimulationCategory;
 use Modules\Survey\Models\Survey;
 use Modules\Survey\Services\SurveyResultService;
 
@@ -17,7 +18,7 @@ class HomeController extends Controller
     {
         $now = now();
 
-        $homeData = Cache::remember('public.home.data.v2', now()->addMinutes(5), function () {
+        $homeData = Cache::remember('public.home.data.v3', now()->addMinutes(5), function () {
             $baseQuery = Blog::query()
                 ->with(['category', 'images'])
                 ->where('status', true)
@@ -62,6 +63,25 @@ class HomeController extends Controller
                     ])
                     ->where('is_active', true)
                     ->orderBy('name')
+                    ->get(),
+                'simulationCategories' => SimulationCategory::query()
+                    ->whereNull('parent_id')
+                    ->where('is_active', true)
+                    ->withCount([
+                        'simulations' => fn ($query) => $query->published(),
+                    ])
+                    ->with([
+                        'children' => fn ($query) => $query
+                            ->where('is_active', true)
+                            ->withCount([
+                                'simulations' => fn ($simulationQuery) => $simulationQuery->published(),
+                            ])
+                            ->orderBy('sort_order')
+                            ->orderBy('name'),
+                    ])
+                    ->orderBy('sort_order')
+                    ->orderBy('name')
+                    ->take(8)
                     ->get(),
             ];
         });

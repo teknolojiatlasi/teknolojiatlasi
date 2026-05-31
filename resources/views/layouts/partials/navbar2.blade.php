@@ -85,6 +85,14 @@
         $contextLinks = [
             ['label' => 'CV Oluştur', 'icon' => 'fa-circle-plus', 'url' => route('cv.create'), 'active' => request()->routeIs('cv.create')],
         ];
+    } elseif (request()->routeIs('game.*')) {
+        $contextTitle = 'Oyunlar';
+        $contextIcon = 'fa-gamepad';
+        $contextLinks = [
+            ['label' => 'Oyun Listesi', 'icon' => 'fa-list', 'url' => route('game.play'), 'active' => request()->routeIs('game.play')],
+            ['label' => 'Tetris', 'icon' => 'fa-gamepad', 'url' => route('game.play', 'tetris'), 'active' => request()->route('game') === 'tetris'],
+            ['label' => 'Kelime Eslestirme', 'icon' => 'fa-puzzle-piece', 'url' => route('game.play', 'eslestirme'), 'active' => request()->route('game') === 'eslestirme'],
+        ];
     } elseif (request()->routeIs('survey.*')) {
         $contextTitle = 'Anketler';
         $contextIcon = 'fa-bar-chart';

@@ -79,6 +79,18 @@
             ],
         ],
         [
+            'title' => 'Simülasyon',
+            'icon' => 'fas fa-flask',
+            'description' => 'Simülasyon kategorilerini, yayın durumlarını ve içerik listesini yönet.',
+            'href' => route('simulation.admin.categories.index'),
+            'gradient' => 'linear-gradient(135deg, #0891b2 0%, #2563eb 55%, #1d4ed8 100%)',
+            'links' => [
+                ['label' => 'Kategoriler', 'href' => route('simulation.admin.categories.index')],
+                ['label' => 'Simülasyonlar', 'href' => route('simulation.admin.simulations.index')],
+                ['label' => 'Yeni simülasyon', 'href' => route('simulation.admin.simulations.create')],
+            ],
+        ],
+        [
             'title' => 'Sosial',
             'icon' => 'fas fa-hashtag',
             'description' => 'Sosial postları, tagları ve yorumları admin panelinden yönet.',
@@ -277,6 +289,92 @@
             outline: none;
         }
 
+        .admin-simulation-panel {
+            margin-top: 8px;
+            padding: 24px;
+            border: 0;
+            border-radius: 24px;
+            background: #fff;
+            box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+        }
+
+        .admin-simulation-panel__head {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .admin-simulation-panel__head h3 {
+            margin: 0 0 6px;
+            color: #111827;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .admin-simulation-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .admin-simulation-stat {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: #f8fafc;
+            color: #334155;
+            font-weight: 700;
+        }
+
+        .admin-simulation-category-card {
+            height: 100%;
+            padding: 18px;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            border-radius: 18px;
+            background: linear-gradient(180deg, #f8fafc 0%, #fff 100%);
+        }
+
+        .admin-simulation-category-card h4 {
+            margin: 0 0 8px;
+            color: #111827;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .admin-simulation-category-card p {
+            display: -webkit-box;
+            min-height: 44px;
+            margin: 0 0 14px;
+            overflow: hidden;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            color: #64748b;
+            line-height: 1.55;
+        }
+
+        .admin-simulation-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            min-height: 34px;
+            margin-bottom: 16px;
+        }
+
+        .admin-simulation-tag {
+            display: inline-flex;
+            padding: 7px 10px;
+            border-radius: 999px;
+            background: #e0f2fe;
+            color: #075985;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
         @media (max-width: 767.98px) {
             .admin-dashboard-hero {
                 padding: 24px;
@@ -345,6 +443,54 @@
                         </div>
                     @endforeach
                 </div>
+
+                <section class="admin-simulation-panel">
+                    <div class="admin-simulation-panel__head">
+                        <div>
+                            <h3>Simülasyon kategorileri</h3>
+                            <p class="text-muted mb-0">Ana sayfada görünen kategori yapısını yönetim panelinden hızlıca kontrol edin.</p>
+                            <div class="admin-simulation-stats">
+                                <span class="admin-simulation-stat"><i class="fas fa-layer-group"></i> {{ $simulationStats['categories'] }} kategori</span>
+                                <span class="admin-simulation-stat"><i class="fas fa-eye"></i> {{ $simulationStats['published'] }} yayında</span>
+                                <span class="admin-simulation-stat"><i class="fas fa-pen-to-square"></i> {{ $simulationStats['drafts'] }} taslak</span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-wrap align-items-start gap-2">
+                            <a href="{{ route('simulation.admin.categories.index') }}" class="btn btn-primary">
+                                <i class="fas fa-sitemap"></i> Kategorileri Yönet
+                            </a>
+                            <a href="{{ route('simulation.admin.simulations.create') }}" class="btn btn-success">
+                                <i class="fas fa-plus"></i> Yeni Simülasyon
+                            </a>
+                        </div>
+                    </div>
+
+                    @if ($simulationCategories->isNotEmpty())
+                        <div class="row">
+                            @foreach ($simulationCategories as $category)
+                                <div class="col-lg-3 col-md-6 mb-3">
+                                    <article class="admin-simulation-category-card">
+                                        <h4>{{ $category->name }}</h4>
+                                        <p>{{ $category->description ?: 'Bu kategori için açıklama eklenmemiş.' }}</p>
+                                        <div class="admin-simulation-tags">
+                                            @forelse ($category->children->take(3) as $child)
+                                                <span class="admin-simulation-tag">{{ $child->name }}</span>
+                                            @empty
+                                                <span class="admin-simulation-tag">{{ $category->published_simulations_count }} yayında</span>
+                                            @endforelse
+                                        </div>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <a href="{{ route('simulation.admin.categories.index') }}" class="btn btn-sm btn-outline-primary">Düzenle</a>
+                                            <a href="{{ route('simulation.category', $category) }}" class="btn btn-sm btn-outline-secondary" target="_blank" rel="noopener noreferrer">Public</a>
+                                        </div>
+                                    </article>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="alert alert-info mb-0">Henüz simülasyon kategorisi yok. Kategori eklediğinizde ana sayfa vitrini buradan takip edilecek.</div>
+                    @endif
+                </section>
             </div>
         </div>
     </div>

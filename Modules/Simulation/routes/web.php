@@ -23,7 +23,7 @@ Route::get('/simulation-test', function () {
     return 'Simulation module calisiyor';
 });
 
-Route::middleware(['auth', 'verified', 'role:admin'])
+Route::middleware(['auth', 'verified', 'role:superadmin|admin', 'admin_mfa'])
     ->prefix('admin/simulation')
     ->name('simulation.admin.')
     ->group(function () {
