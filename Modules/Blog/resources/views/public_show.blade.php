@@ -2,8 +2,11 @@
 @section('title', $blog->title . ' | Teknoloji Atlası')
 @section('meta')
 @php
-    $shareDescription = \Illuminate\Support\Str::limit(trim(preg_replace('/\s+/', ' ', strip_tags($blog->content))), 180);
-    $shareImage = $blog->cover_image_url ?: asset('favicon-star.svg');
+    $shareDescription = $blog->summary
+        ?? \Illuminate\Support\Str::limit(trim(preg_replace('/\s+/', ' ', strip_tags($blog->content))), 180);
+    $shareImage = $blog->cover_image
+        ? asset('storage/' . ltrim($blog->cover_image, '/'))
+        : ($blog->cover_image_url ?: asset('favicon-star.svg'));
 @endphp
 <link rel="canonical" href="{{ route('blog.public.show', $blog) }}">
 <meta name="description" content="{{ $shareDescription }}">
@@ -12,7 +15,7 @@
 <meta property="og:site_name" content="Teknoloji Atlası">
 <meta property="og:title" content="{{ $blog->title }}">
 <meta property="og:description" content="{{ $shareDescription }}">
-<meta property="og:url" content="{{ route('blog.public.show', $blog) }}">
+<meta property="og:url" content="{{ url()->current() }}">
 <meta property="og:image" content="{{ $shareImage }}">
 <meta property="og:image:alt" content="{{ $blog->title }}">
 <meta name="twitter:card" content="summary_large_image">
