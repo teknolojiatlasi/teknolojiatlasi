@@ -10,6 +10,7 @@ return [
         'script_src' => [
             "'self'",
             "'unsafe-inline'",
+            'https://unpkg.com',
             'https://cdn.jsdelivr.net',
             'https://cdnjs.cloudflare.com',
             'https://www.googletagmanager.com',
