@@ -39,9 +39,28 @@
         background-color: #ffffff;
     }
 
+    #blogImagesCarousel .carousel-inner,
+    #blogImagesCarousel .carousel-item {
+        background: #f8fafc;
+    }
+
+    #blogImagesCarousel .carousel-item {
+        aspect-ratio: 16 / 9;
+        max-height: min(38rem, 72vh);
+    }
+
     #blogImagesCarousel .blog-hero-image {
-        max-height: 38rem;
-        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        max-height: min(38rem, 72vh);
+        object-fit: contain;
+        object-position: center;
+    }
+
+    @media (max-width: 575.98px) {
+        #blogImagesCarousel .carousel-item {
+            max-height: 70vh;
+        }
     }
 
     .blog-content::after,
