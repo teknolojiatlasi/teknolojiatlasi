@@ -181,8 +181,9 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('vendor/gentelella/js/leaflet-DPwY-ags.js') }}" defer></script>
-    <script>
+    <script type="module">
+        import { L as Leaflet } from "{{ asset('vendor/gentelella/js/leaflet-DPwY-ags.js') }}";
+
         (function () {
             const formEl = document.getElementById('contactForm');
             const submitBtn = document.getElementById('contactSubmitBtn');
@@ -248,19 +249,19 @@
             formEl.addEventListener('submit', submitForm);
 
             const mapEl = document.getElementById('contactMap');
-            if (mapEl && window.L) {
+            if (mapEl && Leaflet) {
                 const lat = Number(@json($settings->contact_lat));
                 const lng = Number(@json($settings->contact_lng));
                 const hasCoords = Number.isFinite(lat) && Number.isFinite(lng) && (lat !== 0 || lng !== 0);
                 const center = hasCoords ? [lat, lng] : [39.0, 35.0];
 
-                const map = L.map(mapEl, { scrollWheelZoom: false }).setView(center, hasCoords ? 15 : 5);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                const map = Leaflet.map(mapEl, { scrollWheelZoom: false }).setView(center, hasCoords ? 15 : 5);
+                Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; OpenStreetMap katkıda bulunanlar',
                 }).addTo(map);
 
                 if (hasCoords) {
-                    L.marker([lat, lng]).addTo(map);
+                    Leaflet.marker([lat, lng]).addTo(map);
                 }
             }
         })();

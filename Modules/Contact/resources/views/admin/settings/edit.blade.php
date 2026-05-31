@@ -85,12 +85,13 @@
 @endsection
 
 @push('styles')
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+    <link rel="stylesheet" href="{{ asset('vendor/gentelella/assets/leaflet-CIGW-MKW.css') }}">
 @endpush
 
 @push('scripts')
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-    <script>
+    <script type="module">
+        import { L as Leaflet } from "{{ asset('vendor/gentelella/js/leaflet-DPwY-ags.js') }}";
+
         (function () {
             const csrf = document.querySelector('meta[name="csrf-token"]').content;
             const formEl = document.getElementById('settingsForm');
@@ -151,27 +152,27 @@
             const mapEl = document.getElementById('settingsMap');
 
             function initMap() {
-                if (!mapEl || !window.L) return;
+                if (!mapEl || !Leaflet) return;
                 const lat = Number(latEl.value);
                 const lng = Number(lngEl.value);
                 const hasCoords = Number.isFinite(lat) && Number.isFinite(lng) && (lat !== 0 || lng !== 0);
                 const center = hasCoords ? [lat, lng] : [39.0, 35.0];
                 const zoom = hasCoords ? 15 : 5;
 
-                map = L.map(mapEl, { scrollWheelZoom: false }).setView(center, zoom);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                map = Leaflet.map(mapEl, { scrollWheelZoom: false }).setView(center, zoom);
+                Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; OpenStreetMap katkıda bulunanlar',
                 }).addTo(map);
 
                 if (hasCoords) {
-                    marker = L.marker(center).addTo(map);
+                    marker = Leaflet.marker(center).addTo(map);
                 }
 
                 map.on('click', (e) => {
                     const { lat, lng } = e.latlng;
                     latEl.value = lat.toFixed(7);
                     lngEl.value = lng.toFixed(7);
-                    if (!marker) marker = L.marker([lat, lng]).addTo(map);
+                    if (!marker) marker = Leaflet.marker([lat, lng]).addTo(map);
                     marker.setLatLng([lat, lng]);
                 });
             }
@@ -184,7 +185,7 @@
                 if (!hasCoords) return;
                 const center = [lat, lng];
                 map.setView(center, 15);
-                if (!marker) marker = L.marker(center).addTo(map);
+                if (!marker) marker = Leaflet.marker(center).addTo(map);
                 marker.setLatLng(center);
             }
 
@@ -231,4 +232,3 @@
         })();
     </script>
 @endpush
-

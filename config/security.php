@@ -45,6 +45,7 @@ return [
             'https://pagead2.googlesyndication.com',
             'https://googleads.g.doubleclick.net',
             'https://challenges.cloudflare.com',
+            'https://nominatim.openstreetmap.org',
             'https://*.tile.openstreetmap.org',
         ],
         'frame_src' => [
