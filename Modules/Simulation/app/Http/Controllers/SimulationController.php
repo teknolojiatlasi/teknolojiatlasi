@@ -61,12 +61,14 @@ class SimulationController extends Controller
         $simulation = $this->simulations->findPublishedBySlug($slug);
 
         if ($simulation->content_type === 'html') {
+            $document = $this->editorService->buildPreviewDocument(
+                (string) ($simulation->html_code ?? ''),
+                (string) ($simulation->css_code ?? ''),
+                (string) ($simulation->js_code ?? ''),
+            );
+
             return response(
-                $this->editorService->buildPreviewDocument(
-                    (string) ($simulation->html_code ?? ''),
-                    (string) ($simulation->css_code ?? ''),
-                    (string) ($simulation->js_code ?? ''),
-                ),
+                $this->editorService->injectPublicTrackingAndAds($document),
                 200,
                 ['Content-Type' => 'text/html; charset=UTF-8']
             );

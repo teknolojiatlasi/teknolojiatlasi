@@ -5,6 +5,18 @@
 @section('content')
 <main class="py-4 py-lg-5">
     <div class="container">
+        @include('partials.adsense.ad-unit', [
+            'slot' => 'simulation_top',
+            'class' => 'mx-auto',
+            'style' => 'max-width: 100%;',
+            'insStyle' => 'display:block; text-align:center;',
+            'layout' => 'in-article',
+            'format' => 'fluid',
+            'variant' => 'hero',
+            'minHeight' => '120px',
+            'label' => null,
+        ])
+
         <article class="bg-white border rounded-3 shadow-sm overflow-hidden">
             <div class="p-4 p-lg-5">
                 <div class="d-flex flex-column flex-md-row justify-content-between gap-3 mb-4">
@@ -32,11 +44,34 @@
 
                 @if ($simulation->content)
                     <section class="mt-4">
+                        @include('partials.adsense.ad-unit', [
+                            'slot' => 'simulation_inline',
+                            'style' => 'max-width: 100%;',
+                            'insStyle' => 'display:block; text-align:center;',
+                            'layout' => 'in-article',
+                            'format' => 'fluid',
+                            'variant' => 'inline',
+                            'minHeight' => '110px',
+                            'label' => null,
+                        ])
+
                         {!! $simulation->content !!}
                     </section>
                 @endif
             </div>
         </article>
+
+        @include('partials.adsense.ad-unit', [
+            'slot' => 'simulation_bottom',
+            'class' => 'mt-4',
+            'style' => 'max-width: 100%;',
+            'insStyle' => 'display:block; text-align:center;',
+            'layout' => 'in-article',
+            'format' => 'fluid',
+            'variant' => 'banner',
+            'minHeight' => '120px',
+            'label' => null,
+        ])
     </div>
 </main>
 @endsection

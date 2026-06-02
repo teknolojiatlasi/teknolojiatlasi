@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use Modules\Blog\Models\Blog;
 use Modules\Blog\Models\BlogCategory;
 use Modules\Sinav\Models\Lesson;
+use Modules\Simulation\Models\Simulation;
 use Modules\Simulation\Models\SimulationCategory;
 use Modules\Survey\Models\Survey;
 use Modules\Survey\Services\SurveyResultService;
@@ -18,7 +19,7 @@ class HomeController extends Controller
     {
         $now = now();
 
-        $homeData = Cache::remember('public.home.data.v3', now()->addMinutes(5), function () {
+        $homeData = Cache::remember('public.home.data.v4', now()->addMinutes(5), function () {
             $baseQuery = Blog::query()
                 ->with(['category', 'images'])
                 ->where('status', true)
@@ -41,6 +42,13 @@ class HomeController extends Controller
                 'subBlogs' => (clone $secondaryQuery)->take(3)->get(),
                 'recentBlogs' => (clone $baseQuery)->take(4)->get(),
                 'blogs' => (clone $secondaryQuery)->take(6)->get(),
+                'latestSimulations' => Simulation::query()
+                    ->with('category')
+                    ->published()
+                    ->orderByDesc('published_at')
+                    ->orderByDesc('created_at')
+                    ->take(8)
+                    ->get(),
                 'menus' => BlogCategory::query()
                     ->whereNull('parent_id')
                     ->withCount('blogs')

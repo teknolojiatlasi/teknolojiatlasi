@@ -561,38 +561,38 @@
             <div class="d-flex flex-column flex-lg-row align-items-lg-end justify-content-between gap-3 mb-4">
                 <div>
                     <span class="section-kicker"><i class="fa fa-sun-o"></i> Bugün öne çıkanlar</span>
-                    <h2 class="section-title">Son yayınlanan içerikler.</h2>
+                    <h2 class="section-title">Son eklenen simülasyonlar.</h2>
 
                 </div>
-                <a href="{{ route('blog.public.index') }}" class="btn btn-outline-dark rounded-pill px-4">Tüm içerikler</a>
+                <a href="{{ route('simulation.index') }}" class="btn btn-outline-dark rounded-pill px-4">Tüm simülasyonlar</a>
             </div>
 
-            @if($blogs->isNotEmpty())
+            @if($latestSimulations->isNotEmpty())
                 <div class="row g-4">
-                    @foreach($blogs as $item)
-                        @php($cover = $item->cover_image ? route('blog.media.show', ['path' => $item->cover_image]) : null)
+                    @foreach($latestSimulations as $item)
+                        @php($cover = $item->cover_image_url)
                         <div class="col-12 col-md-6 col-xl-3">
-                            <article class="story-card glass-card h-100 overflow-hidden">
+                            <a href="{{ route('simulation.show', $item->slug) }}" class="story-card glass-card h-100 overflow-hidden d-block text-decoration-none">
                                 @if($cover)
                                     <img src="{{ $cover }}" alt="{{ $item->title }}" class="story-image" width="1200" height="675">
                                 @else
-                                    <div class="story-image d-grid place-items-center"><i class="fa fa-file-text-o fa-3x text-secondary"></i></div>
+                                    <div class="story-image d-grid place-items-center"><i class="fa fa-flask fa-3x text-secondary"></i></div>
                                 @endif
                                 <div class="story-body">
                                     <div class="d-flex justify-content-between align-items-center gap-3 mb-3 story-meta">
                                         <span>{{ $item->category->name ?? 'Genel' }}</span>
-                                        <span>{{ optional($item->created_at)->format('d.m.Y') }}</span>
+                                        <span>{{ optional($item->published_at ?? $item->created_at)->format('d.m.Y') }}</span>
                                     </div>
-                                    <a href="{{ route('blog.public.show', $item) }}" class="story-link d-block mb-3">{{ Str::limit($item->title, 62) }}</a>
-                                    <p class="text-secondary story-excerpt mb-3">{{ Str::limit(strip_tags($item->content), 72) }}</p>
-                                    <a href="{{ route('blog.public.show', $item) }}" class="btn btn-sm btn-outline-primary rounded-pill px-3">Oku</a>
+                                    <span class="story-link d-block mb-3">{{ Str::limit($item->title, 62) }}</span>
+                                    <p class="text-secondary story-excerpt mb-3">{{ Str::limit(strip_tags($item->excerpt ?: $item->content), 72) }}</p>
+                                    <span class="btn btn-sm btn-outline-primary rounded-pill px-3">Aç</span>
                                 </div>
-                            </article>
+                            </a>
                         </div>
                     @endforeach
                 </div>
             @else
-                <div class="empty-state">Henüz öne çıkarılacak yayın bulunmuyor.</div>
+                <div class="empty-state">Henüz yayınlanmış simülasyon bulunmuyor.</div>
             @endif
         </section>
 

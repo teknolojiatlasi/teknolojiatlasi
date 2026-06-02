@@ -47,6 +47,53 @@ class SimulationEditorService
 HTML;
     }
 
+    public function injectPublicTrackingAndAds(string $document): string
+    {
+        $headScripts = trim(
+            view('partials.google-analytics')->render()
+            . "\n"
+            . view('partials.google-adsense')->render()
+        );
+
+        $topAd = view('partials.adsense.ad-unit', [
+            'slot' => 'simulation_top',
+            'class' => 'mx-auto',
+            'style' => 'max-width: 100%;',
+            'insStyle' => 'display:block; text-align:center;',
+            'layout' => 'in-article',
+            'format' => 'fluid',
+            'variant' => 'hero',
+            'minHeight' => '120px',
+            'label' => null,
+        ])->render();
+
+        $bottomAd = view('partials.adsense.ad-unit', [
+            'slot' => 'simulation_bottom',
+            'class' => 'mt-4',
+            'style' => 'max-width: 100%;',
+            'insStyle' => 'display:block; text-align:center;',
+            'layout' => 'in-article',
+            'format' => 'fluid',
+            'variant' => 'banner',
+            'minHeight' => '120px',
+            'label' => null,
+        ])->render();
+
+        if ($headScripts !== '') {
+            $document = preg_replace('/<\/head>/i', $headScripts . "\n</head>", $document, 1) ?? $document;
+        }
+
+        if (trim($topAd) !== '') {
+            $document = preg_replace('/<body\b[^>]*>/i', '$0' . "\n" . $topAd, $document, 1) ?? $document;
+        }
+
+        if (trim($bottomAd) !== '') {
+            $document = preg_replace('/<\/body>/i', $bottomAd . "\n</body>", $document, 1) ?? $document;
+        }
+
+        return $document;
+    }
+
     public function buildInlineRenderParts(string $html, string $css = '', string $js = ''): array
     {
         $html = trim($html);
