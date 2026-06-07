@@ -16,6 +16,12 @@ class GameController extends Controller
                 'route' => 'game.index',
                 'icon' => 'fa-gamepad',
             ],
+            'surukle-tetris' => [
+                'title' => 'Surukle Tetris',
+                'description' => 'Parcalari surukle, satirlari ve sutunlari temizle.',
+                'route' => 'game.tetris-drag',
+                'icon' => 'fa-th-large',
+            ],
             'mayin-tarlasi' => [
                 'title' => 'Mayin Tarlasi',
                 'description' => 'Mayinlari bul, guvenli kareleri ac.',
@@ -68,6 +74,11 @@ class GameController extends Controller
     public function mines()
     {
         return view('game::mines-page');
+    }
+
+    public function tetrisDrag()
+    {
+        return view('game::tetris-drag');
     }
 
     /**
