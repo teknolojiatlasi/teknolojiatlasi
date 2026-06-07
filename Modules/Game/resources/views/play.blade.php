@@ -8,11 +8,25 @@
             padding: 1.5rem 0 2rem;
         }
 
+        .games-page.is-playing {
+            padding: 0;
+        }
+
+        .games-page.is-playing .container {
+            max-width: none;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
         .games-shell {
             display: grid;
             grid-template-columns: 280px minmax(0, 1fr);
             gap: 1rem;
             align-items: start;
+        }
+
+        .games-shell.is-playing {
+            display: block;
         }
 
         .games-sidebar,
@@ -96,6 +110,14 @@
             min-height: calc(100vh - 140px);
         }
 
+        .games-shell.is-playing .games-player {
+            border-radius: 0;
+            border: 0;
+            box-shadow: none;
+            background: transparent;
+            min-height: calc(100vh - 92px);
+        }
+
         .games-player-header {
             display: flex;
             justify-content: space-between;
@@ -120,6 +142,11 @@
             min-height: 620px;
             border: 0;
             background: #0f172a;
+        }
+
+        .games-shell.is-playing .games-player-frame {
+            height: calc(100vh - 92px);
+            min-height: calc(100vh - 92px);
         }
 
         @media (max-width: 900px) {
@@ -164,31 +191,35 @@
 @endpush
 
 @section('content')
-    <main class="games-page">
+    <main class="games-page {{ request()->route('game') ? 'is-playing' : '' }}">
         <div class="container">
-            <div class="games-shell">
-                <aside class="games-sidebar" aria-label="Oyun listesi">
-                    <h1 class="games-title">Oyunlar</h1>
-                    <nav class="games-list">
-                        @foreach ($games as $key => $game)
-                            <a class="games-link {{ $selectedKey === $key ? 'is-active' : '' }}" href="{{ route('game.play', $key) }}">
-                                <span class="games-link-icon"><i class="fa {{ $game['icon'] }}"></i></span>
-                                <span>
-                                    <strong>{{ $game['title'] }}</strong>
-                                    <span>{{ $game['description'] }}</span>
-                                </span>
-                            </a>
-                        @endforeach
-                    </nav>
-                </aside>
+            <div class="games-shell {{ request()->route('game') ? 'is-playing' : '' }}">
+                @unless (request()->route('game'))
+                    <aside class="games-sidebar" aria-label="Oyun listesi">
+                        <h1 class="games-title">Oyunlar</h1>
+                        <nav class="games-list">
+                            @foreach ($games as $key => $game)
+                                <a class="games-link {{ $selectedKey === $key ? 'is-active' : '' }}" href="{{ route('game.play', $key) }}">
+                                    <span class="games-link-icon"><i class="fa {{ $game['icon'] }}"></i></span>
+                                    <span>
+                                        <strong>{{ $game['title'] }}</strong>
+                                        <span>{{ $game['description'] }}</span>
+                                    </span>
+                                </a>
+                            @endforeach
+                        </nav>
+                    </aside>
+                @endunless
 
                 <section class="games-player" aria-label="{{ $selectedGame['title'] }}">
-                    <div class="games-player-header">
-                        <h1>{{ $selectedGame['title'] }}</h1>
-                        <a class="btn btn-sm btn-outline-primary" href="{{ $gameUrl }}" target="_blank" rel="noopener">
-                            Tam ekran ac
-                        </a>
-                    </div>
+                    @unless (request()->route('game'))
+                        <div class="games-player-header">
+                            <h1>{{ $selectedGame['title'] }}</h1>
+                            <a class="btn btn-sm btn-outline-primary" href="{{ $gameUrl }}" target="_blank" rel="noopener">
+                                Tam ekran ac
+                            </a>
+                        </div>
+                    @endunless
                     <iframe class="games-player-frame" src="{{ $gameUrl }}" title="{{ $selectedGame['title'] }}" loading="eager"></iframe>
                 </section>
             </div>

@@ -91,6 +91,7 @@
         $contextLinks = [
             ['label' => 'Oyun Listesi', 'icon' => 'fa-list', 'url' => route('game.play'), 'active' => request()->routeIs('game.play')],
             ['label' => 'Tetris', 'icon' => 'fa-gamepad', 'url' => route('game.play', 'tetris'), 'active' => request()->route('game') === 'tetris'],
+            ['label' => 'Mayin Tarlasi', 'icon' => 'fa-bomb', 'url' => route('game.play', 'mayin-tarlasi'), 'active' => request()->route('game') === 'mayin-tarlasi'],
             ['label' => 'Kelime Eslestirme', 'icon' => 'fa-puzzle-piece', 'url' => route('game.play', 'eslestirme'), 'active' => request()->route('game') === 'eslestirme'],
         ];
     } elseif (request()->routeIs('survey.*')) {

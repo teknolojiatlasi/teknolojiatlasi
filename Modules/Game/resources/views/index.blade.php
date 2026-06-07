@@ -468,12 +468,12 @@
             right: 0;
             bottom: clamp(8px, 2vh, 18px);
             z-index: 30;
-            padding: 0 12px;
+            padding: 0 12px env(safe-area-inset-bottom);
             pointer-events: none;
         }
 
         .touch-controls::before {
-            content: "";
+            content: none;
             position: absolute;
             inset: -8px 8px -10px;
             border-radius: 26px;
@@ -487,50 +487,35 @@
         .touch-controls .btn {
             position: relative;
             z-index: 1;
-            background: linear-gradient(180deg, rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.96));
+            background: linear-gradient(145deg, #9b7ad8, #5b3c9b);
             color: #fff;
-            border-radius: 14px;
-            padding: 12px 14px;
-            min-width: 90px;
+            border-radius: 3px;
+            padding: 0;
+            width: 66px;
+            height: 66px;
+            min-width: 66px;
             touch-action: none;
             pointer-events: auto;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            border: 3px solid #0f1020;
+            box-shadow:
+                inset 5px 5px 0 rgba(255, 255, 255, 0.28),
+                inset -5px -5px 0 rgba(37, 20, 78, 0.52),
+                0 3px 0 #0f1020;
         }
 
         .touch-controls .btn-label {
             display: block;
-            font-size: 11px;
+            font-size: 30px;
             font-weight: 800;
             line-height: 1;
         }
 
         .touch-controls .btn-sub {
-            display: block;
+            display: none;
             margin-top: 4px;
             font-size: 9px;
             opacity: 0.8;
             line-height: 1;
-        }
-
-        .touch-controls .btn[data-action="rotate"] {
-            background: linear-gradient(135deg, #ff8a00, #f97316);
-        }
-
-        .touch-controls .btn[data-action="left"] {
-            background: linear-gradient(135deg, #7c3aed, #4f46e5);
-        }
-
-        .touch-controls .btn[data-action="right"] {
-            background: linear-gradient(135deg, #06b6d4, #2563eb);
-        }
-
-        .touch-controls .btn[data-action="down"] {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-        }
-
-        .touch-controls .btn[data-action="drop"] {
-            background: linear-gradient(135deg, #f43f5e, #e11d48);
         }
 
         .mobile-actions {
@@ -543,79 +528,6 @@
         .touch-enabled .touch-controls,
         .touch-enabled .mobile-actions {
             display: flex;
-        }
-
-        .mines-layout {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) 260px;
-            gap: 24px;
-            align-items: start;
-        }
-
-        .mines-card {
-            background: var(--card);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(20, 20, 30, 0.08);
-            padding: 18px;
-        }
-
-        .mines-board {
-            display: grid;
-            gap: 6px;
-            justify-content: center;
-            --cell: 32px;
-        }
-
-        .mines-cell {
-            width: var(--cell);
-            height: var(--cell);
-            border-radius: 8px;
-            border: 0;
-            background: #f3f0ea;
-            font-family: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-            font-size: 14px;
-            cursor: pointer;
-            transition: transform 0.1s ease, background 0.2s ease;
-        }
-
-        .mines-cell.revealed {
-            background: #ffffff;
-            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
-            cursor: default;
-        }
-
-        .mines-cell.flagged {
-            background: #ffe6d1;
-        }
-
-        .mines-cell.mine {
-            background: #ef476f;
-            color: #ffffff;
-        }
-
-        .mines-controls {
-            display: grid;
-            gap: 12px;
-        }
-
-        .mines-select,
-        .mines-toggle {
-            padding: 10px 12px;
-            border-radius: 12px;
-            border: 1px solid #ddd;
-            font-family: "Space Grotesk", system-ui, sans-serif;
-            background: #ffffff;
-        }
-
-        .mines-stats {
-            display: grid;
-            gap: 8px;
-        }
-
-        .mines-row {
-            display: flex;
-            justify-content: space-between;
-            font-family: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
         }
 
         .overlay {
@@ -727,23 +639,22 @@
         @media (max-width: 640px) {
             html,
             body {
-                height: 100dvh;
                 min-height: 100dvh;
-                overflow: hidden;
+                overflow-x: hidden;
+                overflow-y: auto;
             }
 
             body.game-pwa-shell {
-                position: fixed;
-                inset: 0;
+                position: static;
+                inset: auto;
                 width: 100%;
             }
 
             .tetris-app {
                 display: block;
-                height: 100dvh;
                 min-height: 100dvh;
-                padding: 8px 8px calc(108px + env(safe-area-inset-bottom));
-                overflow: hidden;
+                padding: 8px 8px calc(18px + env(safe-area-inset-bottom));
+                overflow: visible;
             }
 
             .tetris-app::before,
@@ -754,12 +665,11 @@
             .frame {
                 width: 100%;
                 max-width: calc(100vw - 16px);
-                max-height: calc(100dvh - 16px);
+                max-height: none;
                 gap: 8px;
                 transform: none !important;
-                height: 100%;
-                grid-template-rows: auto auto minmax(0, 1fr);
-                overflow: hidden;
+                height: auto;
+                overflow: visible;
             }
 
             .page-topbar {
@@ -829,9 +739,9 @@
             }
 
             .tab-panel.active {
-                height: 100%;
+                height: auto;
                 min-height: 0;
-                overflow: hidden;
+                overflow: visible;
                 padding-bottom: 0;
             }
 
@@ -848,7 +758,7 @@
             }
 
             .board-wrap {
-                width: min(100%, 248px);
+                width: min(100%, 230px);
             }
 
             .hud {
@@ -915,7 +825,7 @@
             }
 
             .side-card .controls-card {
-                display: none;
+                display: grid;
             }
 
             #next {
@@ -932,21 +842,41 @@
             .touch-controls,
             .touch-enabled .touch-controls {
                 display: grid;
-                grid-template-columns: repeat(5, minmax(0, 1fr));
-                gap: 6px;
-                align-items: stretch;
-                padding: 0 8px env(safe-area-inset-bottom);
+                position: static;
+                grid-template-columns: repeat(3, 72px);
+                grid-template-rows: repeat(2, 72px);
+                grid-template-areas:
+                    ". rotate ."
+                    "left down right";
+                gap: 8px;
+                align-items: center;
+                justify-items: center;
+                width: max-content;
+                margin: 8px auto 0;
+                transform: none;
+                padding: 0;
             }
 
             .touch-controls .btn {
-                min-width: 0;
-                min-height: 64px;
-                padding: 8px 2px;
-                border-radius: 16px;
-                font-size: 10px;
-                font-weight: 800;
-                line-height: 1;
-                letter-spacing: 0.04em;
+                width: 72px;
+                height: 72px;
+                min-width: 72px;
+            }
+
+            .touch-controls .btn[data-action="rotate"] {
+                grid-area: rotate;
+            }
+
+            .touch-controls .btn[data-action="left"] {
+                grid-area: left;
+            }
+
+            .touch-controls .btn[data-action="right"] {
+                grid-area: right;
+            }
+
+            .touch-controls .btn[data-action="down"] {
+                grid-area: down;
             }
 
             .gesture-hint {
@@ -965,17 +895,6 @@
                 display: none !important;
             }
 
-            .mines-board {
-                gap: 4px;
-            }
-
-            .mines-controls {
-                gap: 10px;
-            }
-
-            .mines-controls .tips {
-                display: none;
-            }
         }
     </style>
 
@@ -1000,142 +919,7 @@
                     <div class="hero-chip">PWA hazir</div>
                 </div>
             </div>
-            <header class="hero">
-                <div class="tabs" role="tablist" aria-label="Game tabs">
-                    <button class="tab-btn active" data-tab="tetris-panel" role="tab" aria-selected="true">Tetris</button>
-                    <button class="tab-btn" data-tab="mines-panel" role="tab" aria-selected="false">Mayin Tarlasi</button>
-                </div>
-            </header>
-
-            <section class="tab-panel active" id="tetris-panel">
-                <section class="game-grid">
-                <div class="board-card">
-                    <div class="board-wrap">
-                        <canvas id="board" width="300" height="600"></canvas>
-                        <div class="touch-surface" id="touch-surface" aria-hidden="true"></div>
-                        <div class="overlay" id="game-over" aria-hidden="true">
-                            <div class="overlay-card">
-                                <h3>Game Over</h3>
-                                <div>Skor: <strong id="final-score">0</strong></div>
-                                <label>
-                                    Isim
-                                    <input id="player-name" maxlength="18" placeholder="Player" />
-                                </label>
-                                <button class="btn" id="save-score">Kaydet</button>
-                                <button class="btn secondary" id="play-again">Tekrar Oyna</button>
-                            </div>
-                        </div>
-                    </div>
-                <div class="hud">
-                    <div class="stat">
-                        <span>Score</span>
-                        <strong id="score">0</strong>
-                    </div>
-                    <div class="stat">
-                        <span>Lines</span>
-                        <strong id="lines">0</strong>
-                    </div>
-                    <div class="stat">
-                        <span>Level</span>
-                        <strong id="level">1</strong>
-                    </div>
-                </div>
-                <div class="gesture-hint">
-                    <span class="gesture-pill">Tap = Rotate</span>
-                    <span class="gesture-pill">Swipe up = Hard drop</span>
-                    <span class="gesture-pill">Swipe down = Soft drop</span>
-                </div>
-                <div class="mobile-play-guide">
-                    <strong>Mobil Kontrol</strong>
-                    SOL ve SAG ile kaydir. DON ile cevir. IN ile yavas indir. AT ile direkt birak.
-                    Istersen oyun alaninda saga, sola ve asagi kaydirarak da oynayabilirsin.
-                </div>
-                <div class="mobile-actions">
-                    <button class="btn" id="start-btn-mobile">Basla</button>
-                    <button class="btn secondary" id="pause-btn-mobile">Duraklat</button>
-                    <button class="btn secondary" id="reset-btn-mobile">Yeniden Baslat</button>
-                </div>
-                <div class="status" id="status">Hazır</div>
-            </div>
-
-                <aside class="side-card">
-                    <div class="panel">
-                        <h3>Sonraki Parça</h3>
-                        <canvas id="next" width="120" height="120"></canvas>
-                    </div>
-                    <div class="panel">
-                        <h3>Skor Tablosu</h3>
-                        <ol class="scoreboard" id="scores-list"></ol>
-                    </div>
-                    <div class="panel controls-card">
-                        <button class="btn" id="start-btn">Basla</button>
-                        <button class="btn secondary" id="pause-btn">Duraklat</button>
-                        <button class="btn secondary" id="reset-btn">Yeniden Baslat</button>
-                    </div>
-                    <div class="panel tips">
-                        <strong>Kontroller</strong><br>
-                        Sol / Sağ Ok: hareket<br>
-                        Yukarı Ok veya X: döndür<br>
-                        Aşağı Ok: hızlı düşür<br>
-                        Boşluk: sert düşür<br>
-                        P: duraklat
-                    </div>
-                </aside>
-            </section>
-
-            <div class="touch-controls">
-                <button class="btn" data-action="left">
-                    <span class="btn-label">SOL</span>
-                    <span class="btn-sub">Kaydir</span>
-                </button>
-                <button class="btn" data-action="right">
-                    <span class="btn-label">SAG</span>
-                    <span class="btn-sub">Kaydir</span>
-                </button>
-                <button class="btn" data-action="rotate">
-                    <span class="btn-label">DON</span>
-                    <span class="btn-sub">Cevir</span>
-                </button>
-                <button class="btn" data-action="down">
-                    <span class="btn-label">IN</span>
-                    <span class="btn-sub">Yavas</span>
-                </button>
-                <button class="btn" data-action="drop">
-                    <span class="btn-label">AT</span>
-                    <span class="btn-sub">Hizli</span>
-                </button>
-            </div>
-            </section>
-            <section class="tab-panel" id="mines-panel">
-                <div class="mines-layout">
-                    <div class="mines-card">
-                        <div class="mines-board" id="mines-board" role="grid" aria-label="Mayin tarlasi"></div>
-                    </div>
-                    <aside class="mines-card mines-controls">
-                        <div class="panel">
-                            <h3>Mod</h3>
-                            <select class="mines-select" id="mines-level">
-                                <option value="easy">Kolay 9x9 (10)</option>
-                                <option value="medium">Orta 12x12 (20)</option>
-                                <option value="hard">Zor 16x16 (40)</option>
-                            </select>
-                        </div>
-                        <div class="panel mines-stats">
-                            <div class="mines-row"><span>Mayin</span><span id="mines-left">0</span></div>
-                            <div class="mines-row"><span>Sure</span><span id="mines-time">0</span></div>
-                            <div class="mines-row"><span>Durum</span><span id="mines-status">Hazir</span></div>
-                        </div>
-                        <button class="btn" id="mines-reset">Yeni Oyun</button>
-                        <button class="btn secondary mines-toggle" id="mines-flag-toggle">Bayrak Modu: Kapali</button>
-                        <div class="panel tips">
-                            <strong>Kontroller</strong><br>
-                            Tikla: kare ac<br>
-                            Bayrak modu: mayin isaretle<br>
-                            Uzun basma yerine bayrak modu kullan
-                        </div>
-                    </aside>
-                </div>
-            </section>
+            @include('game::tetris')
         </div>
     </div>
 
@@ -1165,14 +949,6 @@
             const tabButtons = document.querySelectorAll(".tab-btn");
             const tabPanels = document.querySelectorAll(".tab-panel");
             const touchSurface = document.getElementById("touch-surface");
-
-            const minesBoard = document.getElementById("mines-board");
-            const minesLevel = document.getElementById("mines-level");
-            const minesLeft = document.getElementById("mines-left");
-            const minesTime = document.getElementById("mines-time");
-            const minesStatus = document.getElementById("mines-status");
-            const minesReset = document.getElementById("mines-reset");
-            const minesFlagToggle = document.getElementById("mines-flag-toggle");
 
             const COLS = 10;
             const ROWS = 20;
@@ -1237,7 +1013,7 @@
                 const availableWidth = boardWrap.clientWidth;
                 const viewportHeight = window.visualViewport?.height || window.innerHeight;
                 const isCompact = window.innerWidth <= 640;
-                const reservedHeight = isCompact ? 300 : viewportHeight * 0.42;
+                const reservedHeight = isCompact ? 290 : viewportHeight * 0.34;
                 const maxHeight = Math.max(isCompact ? 220 : 300, viewportHeight - reservedHeight);
                 BLOCK = Math.floor(Math.min(availableWidth / COLS, maxHeight / ROWS));
                 BLOCK = Math.max(isCompact ? 14 : 16, BLOCK);
@@ -1297,8 +1073,10 @@
                     return;
                 }
 
-                document.body.style.overflow = enabled ? "hidden" : "";
-                document.documentElement.style.overflow = enabled ? "hidden" : "";
+                document.body.style.overflowX = "hidden";
+                document.documentElement.style.overflowX = "hidden";
+                document.body.style.overflowY = "";
+                document.documentElement.style.overflowY = "";
             }
 
             function bindTouchSurface() {
@@ -1513,7 +1291,9 @@
                     });
                 });
 
-                drawPiece(current.matrix, current.pos.x, current.pos.y, COLORS[current.type]);
+                if (current) {
+                    drawPiece(current.matrix, current.pos.x, current.pos.y, COLORS[current.type]);
+                }
             }
 
             function drawBlock(x, y, color) {
@@ -1690,257 +1470,6 @@
                 renderScores();
             }
 
-            const minePresets = {
-                easy: { rows: 9, cols: 9, mines: 10 },
-                medium: { rows: 12, cols: 12, mines: 20 },
-                hard: { rows: 16, cols: 16, mines: 40 },
-            };
-            const mineNumberColors = [
-                "#0f172a",
-                "#2563eb",
-                "#16a34a",
-                "#f97316",
-                "#ef4444",
-                "#7c3aed",
-                "#0f172a",
-                "#db2777",
-                "#111827",
-            ];
-
-            let mineConfig = minePresets.easy;
-            let mineGrid = [];
-            let mineEls = [];
-            let mineRevealed = 0;
-            let mineFlags = 0;
-            let mineStarted = false;
-            let mineTimer = null;
-            let mineSeconds = 0;
-            let mineGameOver = false;
-            let mineFlagMode = false;
-
-            function resizeMinesBoard() {
-                if (!minesBoard) return;
-                const gap = parseFloat(window.getComputedStyle(minesBoard).gap) || 6;
-                const maxWidth = minesBoard.parentElement.clientWidth;
-                let cell = Math.floor((maxWidth - gap * (mineConfig.cols - 1)) / mineConfig.cols);
-                cell = Math.max(window.innerWidth <= 640 ? 14 : 18, Math.min(36, cell));
-                minesBoard.style.setProperty("--cell", `${cell}px`);
-                minesBoard.style.gridTemplateColumns = `repeat(${mineConfig.cols}, var(--cell))`;
-            }
-
-            function updateMineStats() {
-                minesLeft.textContent = mineConfig.mines - mineFlags;
-                minesTime.textContent = mineSeconds;
-            }
-
-            function stopMineTimer() {
-                if (mineTimer) {
-                    clearInterval(mineTimer);
-                    mineTimer = null;
-                }
-            }
-
-            function startMineTimer() {
-                if (mineStarted) return;
-                mineStarted = true;
-                mineSeconds = 0;
-                updateMineStats();
-                mineTimer = setInterval(() => {
-                    mineSeconds += 1;
-                    updateMineStats();
-                }, 1000);
-            }
-
-            function setMineStatus(text) {
-                minesStatus.textContent = text;
-            }
-
-            function placeMines() {
-                let placed = 0;
-                while (placed < mineConfig.mines) {
-                    const r = Math.floor(Math.random() * mineConfig.rows);
-                    const c = Math.floor(Math.random() * mineConfig.cols);
-                    if (!mineGrid[r][c].mine) {
-                        mineGrid[r][c].mine = true;
-                        placed += 1;
-                    }
-                }
-            }
-
-            function countAdjacent(row, col) {
-                let count = 0;
-                for (let dr = -1; dr <= 1; dr += 1) {
-                    for (let dc = -1; dc <= 1; dc += 1) {
-                        if (dr === 0 && dc === 0) continue;
-                        const nr = row + dr;
-                        const nc = col + dc;
-                        if (nr < 0 || nr >= mineConfig.rows || nc < 0 || nc >= mineConfig.cols) continue;
-                        if (mineGrid[nr][nc].mine) count += 1;
-                    }
-                }
-                return count;
-            }
-
-            function buildMineGrid() {
-                mineGrid = Array.from({ length: mineConfig.rows }, () =>
-                    Array.from({ length: mineConfig.cols }, () => ({
-                        mine: false,
-                        revealed: false,
-                        flagged: false,
-                        adjacent: 0,
-                    }))
-                );
-                placeMines();
-                for (let r = 0; r < mineConfig.rows; r += 1) {
-                    for (let c = 0; c < mineConfig.cols; c += 1) {
-                        mineGrid[r][c].adjacent = countAdjacent(r, c);
-                    }
-                }
-            }
-
-            function updateMineCell(row, col) {
-                const cell = mineGrid[row][col];
-                const el = mineEls[row][col];
-                el.classList.toggle("revealed", cell.revealed);
-                el.classList.toggle("flagged", cell.flagged);
-                el.classList.toggle("mine", cell.revealed && cell.mine);
-                if (cell.revealed && cell.mine) {
-                    el.textContent = "X";
-                    el.style.color = "#ffffff";
-                    return;
-                }
-                if (cell.flagged) {
-                    el.textContent = "F";
-                    el.style.color = "#111827";
-                    return;
-                }
-                if (!cell.revealed) {
-                    el.textContent = "";
-                    return;
-                }
-                if (cell.adjacent > 0) {
-                    el.textContent = cell.adjacent;
-                    el.style.color = mineNumberColors[cell.adjacent] || "#111827";
-                } else {
-                    el.textContent = "";
-                }
-            }
-
-            function revealAllMines() {
-                for (let r = 0; r < mineConfig.rows; r += 1) {
-                    for (let c = 0; c < mineConfig.cols; c += 1) {
-                        if (mineGrid[r][c].mine) {
-                            mineGrid[r][c].revealed = true;
-                            updateMineCell(r, c);
-                        }
-                    }
-                }
-            }
-
-            function toggleFlag(row, col) {
-                const cell = mineGrid[row][col];
-                if (cell.revealed) return;
-                cell.flagged = !cell.flagged;
-                mineFlags += cell.flagged ? 1 : -1;
-                updateMineStats();
-                updateMineCell(row, col);
-            }
-
-            function floodReveal(startRow, startCol) {
-                const stack = [[startRow, startCol]];
-                while (stack.length > 0) {
-                    const [row, col] = stack.pop();
-                    const cell = mineGrid[row][col];
-                    if (cell.revealed || cell.flagged) continue;
-                    cell.revealed = true;
-                    mineRevealed += 1;
-                    updateMineCell(row, col);
-                    if (cell.adjacent !== 0) continue;
-                    for (let dr = -1; dr <= 1; dr += 1) {
-                        for (let dc = -1; dc <= 1; dc += 1) {
-                            if (dr === 0 && dc === 0) continue;
-                            const nr = row + dr;
-                            const nc = col + dc;
-                            if (nr < 0 || nr >= mineConfig.rows || nc < 0 || nc >= mineConfig.cols) continue;
-                            const neighbor = mineGrid[nr][nc];
-                            if (!neighbor.revealed && !neighbor.flagged && !neighbor.mine) {
-                                stack.push([nr, nc]);
-                            }
-                        }
-                    }
-                }
-            }
-
-            function checkMineWin() {
-                const target = mineConfig.rows * mineConfig.cols - mineConfig.mines;
-                if (mineRevealed >= target) {
-                    mineGameOver = true;
-                    stopMineTimer();
-                    setMineStatus("Kazandin");
-                }
-            }
-
-            function revealMineCell(row, col) {
-                if (mineGameOver) return;
-                const cell = mineGrid[row][col];
-                if (cell.revealed || cell.flagged) return;
-                startMineTimer();
-                if (cell.mine) {
-                    cell.revealed = true;
-                    updateMineCell(row, col);
-                    revealAllMines();
-                    mineGameOver = true;
-                    stopMineTimer();
-                    setMineStatus("Kaybettin");
-                    return;
-                }
-                floodReveal(row, col);
-                checkMineWin();
-            }
-
-            function renderMineBoard() {
-                mineEls = Array.from({ length: mineConfig.rows }, () => Array(mineConfig.cols).fill(null));
-                minesBoard.innerHTML = "";
-                resizeMinesBoard();
-                for (let r = 0; r < mineConfig.rows; r += 1) {
-                    for (let c = 0; c < mineConfig.cols; c += 1) {
-                        const btn = document.createElement("button");
-                        btn.type = "button";
-                        btn.className = "mines-cell";
-                        btn.dataset.row = r;
-                        btn.dataset.col = c;
-                        btn.addEventListener("click", () => {
-                            if (mineFlagMode) {
-                                toggleFlag(r, c);
-                            } else {
-                                revealMineCell(r, c);
-                            }
-                        });
-                        btn.addEventListener("contextmenu", event => {
-                            event.preventDefault();
-                            toggleFlag(r, c);
-                        });
-                        minesBoard.appendChild(btn);
-                        mineEls[r][c] = btn;
-                    }
-                }
-            }
-
-            function resetMineGame() {
-                mineConfig = minePresets[minesLevel.value] || minePresets.easy;
-                mineRevealed = 0;
-                mineFlags = 0;
-                mineStarted = false;
-                mineGameOver = false;
-                mineFlagMode = false;
-                minesFlagToggle.textContent = "Bayrak Modu: Kapali";
-                setMineStatus("Hazir");
-                stopMineTimer();
-                buildMineGrid();
-                renderMineBoard();
-                updateMineStats();
-            }
-
             document.addEventListener("keydown", event => {
                 if (!running || paused) return;
                 if (gameOverEl.classList.contains("active")) return;
@@ -2030,24 +1559,13 @@
                 button.addEventListener("click", () => {
                     setActiveTab(button.dataset.tab);
                     fitFrame();
-                    resizeMinesBoard();
                 });
-            });
-
-            minesReset.addEventListener("click", resetMineGame);
-            minesLevel.addEventListener("change", resetMineGame);
-            minesFlagToggle.addEventListener("click", () => {
-                mineFlagMode = !mineFlagMode;
-                minesFlagToggle.textContent = mineFlagMode
-                    ? "Bayrak Modu: Acik"
-                    : "Bayrak Modu: Kapali";
             });
 
             renderScores();
             setStatus("Hazır");
             resizeCanvas();
             fitFrame();
-            resetMineGame();
             setActiveTab("tetris-panel");
             update();
 
@@ -2084,7 +1602,6 @@
                 resizeCanvas();
                 fitFrame();
                 syncTouchUi();
-                resizeMinesBoard();
                 drawGrid();
             });
         });

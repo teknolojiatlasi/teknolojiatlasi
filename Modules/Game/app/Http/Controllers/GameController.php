@@ -11,10 +11,16 @@ class GameController extends Controller
     {
         return [
             'tetris' => [
-                'title' => 'Tetris ve Mayin Tarlasi',
-                'description' => 'Blok yerlestirme ve mayin bulma oyunlari ayni ekranda.',
+                'title' => 'Tetris',
+                'description' => 'Bloklari yerlestir, satirlari temizle.',
                 'route' => 'game.index',
                 'icon' => 'fa-gamepad',
+            ],
+            'mayin-tarlasi' => [
+                'title' => 'Mayin Tarlasi',
+                'description' => 'Mayinlari bul, guvenli kareleri ac.',
+                'route' => 'game.mines',
+                'icon' => 'fa-bomb',
             ],
             'eslestirme' => [
                 'title' => 'Kelime Eslestirme',
@@ -57,6 +63,11 @@ class GameController extends Controller
     public function index()
     {
         return view('game::index');
+    }
+
+    public function mines()
+    {
+        return view('game::mines-page');
     }
 
     /**
